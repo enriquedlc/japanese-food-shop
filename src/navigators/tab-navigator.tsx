@@ -1,33 +1,100 @@
-import { StyleSheet, Text, View } from "react-native";
-
-import  {createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-import { HomeScreen } from "../screens/home-screen";
-import { FavoriteScreen } from "../screens/favorite-screen";
-import { OrderHistoryScreen } from "../screens/order-history-screen";
-import { CartScreen } from "../screens/cart-screen";
-import { COLORS } from "../theme/theme";
 import { BlurView } from "expo-blur";
+import { StyleSheet } from "react-native";
+
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import { CartScreen } from "../screens/cart-screen";
+import { FavoriteScreen } from "../screens/favorite-screen";
+import { HomeScreen } from "../screens/home-screen";
+import { OrderHistoryScreen } from "../screens/order-history-screen";
+
+import { TAB_BAR_ICONS } from "../../assets/tab-bar";
+import { Icon } from "../components/icon";
+import { COLORS } from "../theme/theme";
 
 const Tab = createBottomTabNavigator();
 
 export function TabNavigator() {
   return (
-    <Tab.Navigator screenOptions={{headerShown: false, tabBarHideOnKeyboard: true, tabBarShowLabel: false, tabBarStyle: styles.tabBarStyle, tabBarBackground: () => <BlurView  intensity={15} style={styles.blurViewStyles} />}}>
-      <Tab.Screen name="HomeScreen" component={HomeScreen} options={{
-        tabBarIcon: ({ focused }) => (
-          <View style={{alignItems: "center", justifyContent: "center", top: 10}}>
-            <Text style={{color: focused ? COLORS.primaryBlackHex : COLORS.primaryLightGreyHex, fontSize: 12}}>HOME</Text>
-          </View>
-        )
-      }} />
-      <Tab.Screen name="FavoriteScreen" component={FavoriteScreen} />
-      <Tab.Screen name="OrderHistoryScreen" component={OrderHistoryScreen} />
-      <Tab.Screen name="CartScreen" component={CartScreen} />
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarHideOnKeyboard: true,
+        tabBarShowLabel: false,
+        tabBarStyle: styles.tabBarStyle,
+        tabBarBackground: () => (
+          <BlurView intensity={15} style={styles.blurViewStyles} />
+        ),
+      }}
+    >
+      <Tab.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Icon
+              options={{
+                source: TAB_BAR_ICONS.HOME_FILLED,
+                tintColor: focused
+                  ? COLORS.primaryOrangeHex
+                  : COLORS.primaryLightGreyHex,
+              }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="FavoriteScreen"
+        component={FavoriteScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Icon
+              options={{
+                source: TAB_BAR_ICONS.HEART_FILLED,
+                tintColor: focused
+                  ? COLORS.primaryOrangeHex
+                  : COLORS.primaryLightGreyHex,
+              }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="OrderHistoryScreen"
+        component={OrderHistoryScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Icon
+              options={{
+                source: TAB_BAR_ICONS.BAG_FILLED,
+                tintColor: focused
+                  ? COLORS.primaryOrangeHex
+                  : COLORS.primaryLightGreyHex,
+              }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="CartScreen"
+        component={CartScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Icon
+              options={{
+                source: TAB_BAR_ICONS.BELL_FILLED,
+                tintColor: focused
+                  ? COLORS.primaryOrangeHex
+                  : COLORS.primaryLightGreyHex,
+              }}
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
-  )
+  );
 }
-   
+
 const styles = StyleSheet.create({
   tabBarStyle: {
     height: 80,
@@ -42,6 +109,6 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0
+    bottom: 0,
   },
 });
