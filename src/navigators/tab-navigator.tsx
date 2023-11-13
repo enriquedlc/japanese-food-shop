@@ -3,13 +3,13 @@ import { StyleSheet } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+import { Icon } from "../components/icon";
 import { CartScreen } from "../screens/cart-screen";
 import { FavoriteScreen } from "../screens/favorite-screen";
 import { HomeScreen } from "../screens/home-screen";
 import { OrderHistoryScreen } from "../screens/order-history-screen";
 
 import { TAB_BAR_ICONS } from "../../assets/tab-bar";
-import { Icon } from "../components/icon";
 import { COLORS } from "../theme/theme";
 
 const Tab = createBottomTabNavigator();

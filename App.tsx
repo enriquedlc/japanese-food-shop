@@ -13,9 +13,21 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="TabNavigator" component={TabNavigator} options={{ animation: "slide_from_bottom" }} />
-        <Stack.Screen name="DetailsScreen" component={DetailsScreen} options={{ animation: "slide_from_bottom" }} />
-        <Stack.Screen name="PaymentScreen" component={PaymentScreen} options={{ animation: "slide_from_bottom" }} />
+        <Stack.Screen
+          name="TabNavigator"
+          component={TabNavigator}
+          options={{ animation: "slide_from_bottom" }}
+        />
+        <Stack.Screen
+          name="DetailsScreen"
+          component={DetailsScreen}
+          options={{ animation: "slide_from_bottom" }}
+        />
+        <Stack.Screen
+          name="PaymentScreen"
+          component={PaymentScreen}
+          options={{ animation: "slide_from_bottom" }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
