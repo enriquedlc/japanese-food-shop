@@ -2,12 +2,13 @@ import { Text, View } from "react-native";
 
 import { useState } from "react";
 import { useJapaneseFoodStore } from "../store/store";
+import { JapaneseFood } from "../types/general";
 
 interface GetCategoriesParams {
-  japaneseFoodList: typeof japaneseFoodList[];
+  japaneseFoodList: JapaneseFood[];
 }
 
-const getCategories = (japaneseFoodList: typeof japaneseFoodList[]) => {
+const getCategories = (japaneseFoodList: JapaneseFood[]) => {
   const categories = japaneseFoodList.map((food) => food.category);
   return ["All", ...new Set(categories)];
 };

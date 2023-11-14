@@ -7,6 +7,7 @@ interface Price {
 export interface JapaneseFood {
   id: string;
   name: string;
+  category: string;
   description: string;
   ingredients: string;
   allergens: string;
