@@ -4,13 +4,19 @@ import { useState } from "react";
 import { useJapaneseFoodStore } from "../store/store";
 import { JapaneseFood } from "../types/general";
 
-interface GetCategoriesParams {
-  japaneseFoodList: JapaneseFood[];
-}
-
 const getCategories = (japaneseFoodList: JapaneseFood[]) => {
   const categories = japaneseFoodList.map((food) => food.category);
   return ["All", ...new Set(categories)];
+};
+
+const getFoodListByCategory = (
+  japaneseFoodList: JapaneseFood[],
+  category: string,
+) => {
+  if (category === "All") {
+    return japaneseFoodList;
+  }
+  return japaneseFoodList.filter((food) => food.category === category);
 };
 
 export function HomeScreen() {
