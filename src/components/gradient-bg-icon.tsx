@@ -8,7 +8,7 @@ interface IconProps {
   options: ImageProps | Readonly<ImageProps>;
 }
 
-export function GradientBGIcon(props: IconProps) {
+export function GradientBgIcon(props: IconProps) {
   const { options } = props;
 
   return (
