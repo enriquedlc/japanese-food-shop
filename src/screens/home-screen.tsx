@@ -1,14 +1,21 @@
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { useState } from "react";
-import { ScrollView, StatusBar, StyleSheet, Text, View } from "react-native";
+import {
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import { Header } from "../components/header";
 
 import { useJapaneseFoodStore } from "../store/store";
+import { JapaneseFood } from "../types/general";
 
 import { FoodListSearchBar } from "../components/food-list-search-bar";
 import { COLORS, FONTSIZE } from "../theme/theme";
-import { JapaneseFood } from "../types/general";
 
 const getCategories = (japaneseFoodList: JapaneseFood[]) => {
   const categories = japaneseFoodList.map((food) => food.category);
@@ -30,7 +37,9 @@ export function HomeScreen() {
     (state) => state,
   );
 
-  const [categories, setCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<string[]>(
+    getCategories(japaneseFoodList),
+  );
   const [searchText, setSearchText] = useState("");
   const [categoryIndex, setCategoryIndex] = useState({
     index: 0,
@@ -39,8 +48,6 @@ export function HomeScreen() {
   const [sortedJapaneseFoodList, setSortedJapaneseFoodList] = useState<
     JapaneseFood[]
   >(getFoodListByCategory(japaneseFoodList, categoryIndex.category));
-
-  console.log(japaneseFoodList);
 
   const tabBarHeight = useBottomTabBarHeight();
 
@@ -60,9 +67,45 @@ export function HomeScreen() {
           setSearchText={setSearchText}
         />
         {/*  */}
-
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.categoryScrollViewStyle}
+        >
+          {categories.map((category, index) => (
+            <View
+              key={`${category}${index}`}
+              style={styles.categoryScrollViewContainer}
+            >
+              <TouchableOpacity
+                onPress={() => {}}
+                style={styles.categoryScrollViewItem}
+              >
+                <Text
+                  style={[
+                    styles.categoryText,
+                    categoryIndex.index === index
+                      ? {
+                          color: COLORS.primaryOrangeHex,
+                        }
+                      : {},
+                  ]}
+                >
+                  {category}
+                </Text>
+                {categoryIndex.index === index ? (
+                  <View style={styles.activeCategory} />
+                ) : (
+                  <></>
+                )}
+              </TouchableOpacity>
+            </View>
+          ))}
+        </ScrollView>
         {/*  */}
       </ScrollView>
+      {/*  */}
+      {/*  */}
     </View>
   );
 }
@@ -80,5 +123,26 @@ const styles = StyleSheet.create({
     fontFamily: "poppins-semibold",
     color: COLORS.primaryWhiteHex,
     paddingLeft: 30,
+  },
+  categoryScrollViewStyle: {
+    paddingHorizontal: 20,
+    marginBottom: 20,
+  },
+  categoryScrollViewContainer: {
+    paddingHorizontal: 15,
+  },
+  activeCategory: {
+    height: 10,
+    width: 10,
+    borderRadius: 10,
+    backgroundColor: COLORS.primaryOrangeHex,
+  },
+  categoryScrollViewItem: {
+    alignItems: "center",
+  },
+  categoryText: {
+    fontSize: FONTSIZE.size_14,
+    fontFamily: "poppins-semibold",
+    color: COLORS.primaryLightGreyHex,
   },
 });

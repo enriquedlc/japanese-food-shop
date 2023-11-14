@@ -26,7 +26,7 @@ export const useJapaneseFoodStore = create<State>()(
       orderHistoryList: [],
     }),
     {
-      name: "japanese-food",
+      name: "japanese-food-data",
       storage: createJSONStorage(() => AsyncStorage),
     },
   ),
