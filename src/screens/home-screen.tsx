@@ -1,10 +1,22 @@
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
-import { ScrollView, StatusBar, StyleSheet, View } from "react-native";
-
 import { useState } from "react";
+import {
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
 import { Header } from "../components/header";
+
 import { useJapaneseFoodStore } from "../store/store";
-import { COLORS } from "../theme/theme";
+
+import { ICONS } from "../../assets";
+import { Icon } from "../components/icon";
+import { BORDERRADIUS, COLORS, FONTSIZE, SPACING } from "../theme/theme";
 import { JapaneseFood } from "../types/general";
 
 const getCategories = (japaneseFoodList: JapaneseFood[]) => {
@@ -48,7 +60,36 @@ export function HomeScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollViewFlex}
       >
-        <Header title="japanese food app" />
+        <Header title="enjoy your meal!" />
+        <Text style={styles.screenTitle}>
+          Explore your favorite {"\n"}japanese meal
+        </Text>
+        {/*  */}
+        <View style={styles.inputContainer}>
+          <TouchableOpacity>
+            <Icon
+              options={{
+                source: ICONS.SEARCH_ICON,
+                tintColor:
+                  searchText.length > 0
+                    ? COLORS.primaryOrangeHex
+                    : COLORS.primaryLightGreyHex,
+                style: {
+                  marginHorizontal: SPACING.space_20,
+                  width: 24,
+                  height: 24,
+                },
+              }}
+            />
+          </TouchableOpacity>
+          <TextInput
+            placeholder="find what you like..."
+            value={searchText}
+            onChangeText={(text) => setSearchText(text)}
+            placeholderTextColor={COLORS.primaryLightGreyHex}
+            style={styles.textInput}
+          />
+        </View>
       </ScrollView>
     </View>
   );
@@ -61,5 +102,25 @@ const styles = StyleSheet.create({
   },
   scrollViewFlex: {
     flexGrow: 1,
+  },
+  screenTitle: {
+    fontSize: FONTSIZE.size_24,
+    fontFamily: "poppins-semibold",
+    color: COLORS.primaryWhiteHex,
+    paddingLeft: 30,
+  },
+  inputContainer: {
+    margin: SPACING.space_30,
+    borderRadius: BORDERRADIUS.radius_20,
+    backgroundColor: COLORS.primaryDarkGreyHex,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  textInput: {
+    height: SPACING.space_20 * 3,
+    width: "100%",
+    fontFamily: "poppins-medium",
+    fontSize: FONTSIZE.size_14,
+    color: COLORS.primaryWhiteHex,
   },
 });

@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   image: {
-    width: SPACING.space_36,
-    height: SPACING.space_36,
+    width: 40,
+    height: 40,
+    tintColor: COLORS.primaryLightGreyHex,
   },
 });
