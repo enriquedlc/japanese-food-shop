@@ -1,22 +1,13 @@
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { useState } from "react";
-import {
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, StatusBar, StyleSheet, Text, View } from "react-native";
 
 import { Header } from "../components/header";
 
 import { useJapaneseFoodStore } from "../store/store";
 
-import { ICONS } from "../../assets";
-import { Icon } from "../components/icon";
-import { BORDERRADIUS, COLORS, FONTSIZE, SPACING } from "../theme/theme";
+import { FoodListSearchBar } from "../components/food-list-search-bar";
+import { COLORS, FONTSIZE } from "../theme/theme";
 import { JapaneseFood } from "../types/general";
 
 const getCategories = (japaneseFoodList: JapaneseFood[]) => {
@@ -40,7 +31,7 @@ export function HomeScreen() {
   );
 
   const [categories, setCategories] = useState<string[]>([]);
-  const [searchText, setSearchText] = useState<string>("");
+  const [searchText, setSearchText] = useState("");
   const [categoryIndex, setCategoryIndex] = useState({
     index: 0,
     category: categories[0],
@@ -64,32 +55,13 @@ export function HomeScreen() {
         <Text style={styles.screenTitle}>
           Explore your favorite {"\n"}japanese meal
         </Text>
+        <FoodListSearchBar
+          searchText={searchText}
+          setSearchText={setSearchText}
+        />
         {/*  */}
-        <View style={styles.inputContainer}>
-          <TouchableOpacity>
-            <Icon
-              options={{
-                source: ICONS.SEARCH_ICON,
-                tintColor:
-                  searchText.length > 0
-                    ? COLORS.primaryOrangeHex
-                    : COLORS.primaryLightGreyHex,
-                style: {
-                  marginHorizontal: SPACING.space_20,
-                  width: 24,
-                  height: 24,
-                },
-              }}
-            />
-          </TouchableOpacity>
-          <TextInput
-            placeholder="find what you like..."
-            value={searchText}
-            onChangeText={(text) => setSearchText(text)}
-            placeholderTextColor={COLORS.primaryLightGreyHex}
-            style={styles.textInput}
-          />
-        </View>
+
+        {/*  */}
       </ScrollView>
     </View>
   );
@@ -108,19 +80,5 @@ const styles = StyleSheet.create({
     fontFamily: "poppins-semibold",
     color: COLORS.primaryWhiteHex,
     paddingLeft: 30,
-  },
-  inputContainer: {
-    margin: SPACING.space_30,
-    borderRadius: BORDERRADIUS.radius_20,
-    backgroundColor: COLORS.primaryDarkGreyHex,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  textInput: {
-    height: SPACING.space_20 * 3,
-    width: "100%",
-    fontFamily: "poppins-medium",
-    fontSize: FONTSIZE.size_14,
-    color: COLORS.primaryWhiteHex,
   },
 });
