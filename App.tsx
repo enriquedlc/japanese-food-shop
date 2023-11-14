@@ -1,33 +1,24 @@
-import { StyleSheet } from "react-native";
-
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { TabNavigator } from "./src/navigators/tab-navigator";
 import { DetailsScreen } from "./src/screens/details-screen";
 import { PaymentScreen } from "./src/screens/payment-screen";
-import { useFonts } from "expo-font";
+
+import { useAppFonts } from "./src/hooks/use-app-fonts";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  // const [fontsLoaded] = useFonts({
-  //   Poppins: require("./assets/Poppins/Poppins-Regular.ttf"),
-  // });
+  const { fontsLoaded } = useAppFonts();
 
-  // const onLayoutRootView = useCallback(async () => {
-  //   if (fontsLoaded) {
-  //     await SplashScreen.hideAsync();
-  //   }
-  // }, [fontsLoaded]);
+  if (!fontsLoaded) {
+    return null;
+  }
 
-  // if (!fontsLoaded) {
-  //   return null;
-  // }
-
-  // if (!fontsLoaded) {
-  //   return null;
-  // }
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <NavigationContainer>
@@ -51,5 +42,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({});

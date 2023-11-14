@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { FONTFAMILY, SPACING } from "../theme/theme";
+import { SPACING } from "../theme/theme";
 
 interface HeaderProps {
   title: string;
@@ -23,9 +23,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   headerTextStyles: {
-    fontFamily: FONTFAMILY.poppins_semibold,
+    fontFamily: "poppins-semibold",
     fontSize: 20,
     color: "#fff",
-    fontWeight: "bold",
   },
 });
