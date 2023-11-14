@@ -1,7 +1,10 @@
-import { Text, View } from "react-native";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import { ScrollView, StatusBar, StyleSheet, View } from "react-native";
 
 import { useState } from "react";
+import { Header } from "../components/header";
 import { useJapaneseFoodStore } from "../store/store";
+import { COLORS } from "../theme/theme";
 import { JapaneseFood } from "../types/general";
 
 const getCategories = (japaneseFoodList: JapaneseFood[]) => {
@@ -32,13 +35,30 @@ export function HomeScreen() {
   });
   const [sortedJapaneseFoodList, setSortedJapaneseFoodList] = useState<
     JapaneseFood[]
-  >([]);
+  >(getFoodListByCategory(japaneseFoodList, categoryIndex.category));
 
   console.log(japaneseFoodList);
 
+  const tabBarHeight = useBottomTabBarHeight();
+
   return (
-    <View>
-      <Text>HomeScreen</Text>
+    <View style={styles.screenContainer}>
+      <StatusBar backgroundColor={COLORS.primaryBlackHex} />
+      <Header title="japanese food app" />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollViewFlex}
+      />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  screenContainer: {
+    flex: 1,
+    backgroundColor: COLORS.primaryBlackHex,
+  },
+  scrollViewFlex: {
+    flexGrow: 1,
+  },
+});
