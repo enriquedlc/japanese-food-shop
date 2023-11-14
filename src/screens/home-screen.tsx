@@ -44,11 +44,12 @@ export function HomeScreen() {
   return (
     <View style={styles.screenContainer}>
       <StatusBar backgroundColor={COLORS.primaryBlackHex} />
-      <Header title="japanese food app" />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollViewFlex}
-      />
+      >
+        <Header title="japanese food app" />
+      </ScrollView>
     </View>
   );
 }
