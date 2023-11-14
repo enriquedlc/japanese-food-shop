@@ -1,4 +1,5 @@
 import { Image, StyleSheet, View } from "react-native";
+
 import { COLORS, SPACING } from "../theme/theme";
 
 export function ProfilePicture() {
@@ -6,7 +7,7 @@ export function ProfilePicture() {
     <View style={styles.imageContainer}>
       <Image
         style={styles.image}
-        source={require("../assets/images/profile-picture.jpg")}
+        source={require("../../assets/profile-image/user-circle.png")}
       />
     </View>
   );

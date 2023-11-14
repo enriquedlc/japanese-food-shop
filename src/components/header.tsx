@@ -1,6 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { SPACING } from "../theme/theme";
+
+import { MENU } from "../../assets/menu";
+import { COLORS, SPACING } from "../theme/theme";
+import { GradientBgIcon } from "./gradient-bg-icon";
+import { ProfilePicture } from "./profile-picture";
 
 interface HeaderProps {
   title: string;
@@ -8,9 +12,17 @@ interface HeaderProps {
 
 export function Header(props: HeaderProps) {
   const { title } = props;
+
   return (
     <View style={styles.headerContainer}>
+      <GradientBgIcon
+        options={{
+          tintColor: COLORS.primaryLightGreyHex,
+          source: MENU.menuIcon,
+        }}
+      />
       <Text style={styles.headerTextStyles}>{title}</Text>
+      <ProfilePicture />
     </View>
   );
 }
