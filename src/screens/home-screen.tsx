@@ -1,6 +1,7 @@
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { useState } from "react";
 import {
+  FlatList,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -16,8 +17,8 @@ import { JapaneseFood } from "../types/general";
 
 import { FoodListSearchBar } from "../components/food-list-search-bar";
 import { COLORS, FONTSIZE } from "../theme/theme";
-import { CategoryChooseList } from "./category-choose-list";
 import { getFoodListByCategory } from "../utils/utils";
+import { CategoryChooseList } from "./category-choose-list";
 
 const getCategories = (japaneseFoodList: JapaneseFood[]) => {
   const categories = japaneseFoodList.map((food) => food.category);
@@ -69,6 +70,14 @@ export function HomeScreen() {
         />
       </ScrollView>
       {/*  */}
+      <FlatList
+        data={sortedJapaneseFoodList}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.sortedFoodList}
+        keyExtractor={(item) => `${item.id}`}
+        renderItem={({ item }) => <TouchableOpacity></TouchableOpacity>}
+      />
       {/*  */}
     </View>
   );
@@ -87,5 +96,10 @@ const styles = StyleSheet.create({
     fontFamily: "poppins-semibold",
     color: COLORS.primaryWhiteHex,
     paddingLeft: 30,
+  },
+  sortedFoodList: {
+    gap: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 30,
   },
 });
