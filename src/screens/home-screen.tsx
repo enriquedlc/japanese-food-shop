@@ -51,6 +51,8 @@ export function HomeScreen() {
 
   const tabBarHeight = useBottomTabBarHeight();
 
+  console.log("japaneseFoodList", sortedJapaneseFoodList.length);
+
   return (
     <View style={styles.screenContainer}>
       <StatusBar backgroundColor={COLORS.primaryBlackHex} />
@@ -78,7 +80,15 @@ export function HomeScreen() {
               style={styles.categoryScrollViewContainer}
             >
               <TouchableOpacity
-                onPress={() => {}}
+                onPress={() => {
+                  setCategoryIndex({ index, category });
+                  setSortedJapaneseFoodList([
+                    ...getFoodListByCategory(
+                      japaneseFoodList,
+                      categories[index],
+                    ),
+                  ]);
+                }}
                 style={styles.categoryScrollViewItem}
               >
                 <Text
