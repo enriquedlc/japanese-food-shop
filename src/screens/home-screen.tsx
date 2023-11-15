@@ -17,6 +17,7 @@ import { JapaneseFood } from "../types/general";
 import { FoodListSearchBar } from "../components/food-list-search-bar";
 import { COLORS, FONTSIZE } from "../theme/theme";
 import { CategoryChooseList } from "./category-choose-list";
+import { getFoodListByCategory } from "../utils/utils";
 
 const getCategories = (japaneseFoodList: JapaneseFood[]) => {
   const categories = japaneseFoodList.map((food) => food.category);

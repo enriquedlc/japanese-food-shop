@@ -7,8 +7,9 @@ import {
 } from "react-native";
 
 import { JapaneseFood } from "../types/general";
+import { getFoodListByCategory } from "../utils/utils";
 
-import { COLORS } from "../theme/theme";
+import { COLORS, FONTSIZE } from "../theme/theme";
 
 interface CategoryChooseListProps {
   categories: string[];
