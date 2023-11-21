@@ -12,7 +12,7 @@ import { ICONS } from "../../assets";
 import { COLORS } from "../theme/theme";
 import { BackGroundIcon } from "./background-icon";
 import { FoodItemCardImage } from "./food-item-card-image";
-import { Icon } from "./icon";
+import { Rating } from "./rating";
 
 const CARD_WIDTH = Dimensions.get("window").width * 0.3;
 
@@ -49,18 +49,7 @@ export function FoodItemCard(props: FoodItemCardProps) {
       colors={[COLORS.primaryGreyHex, COLORS.primaryBlackHex]}
     >
       <FoodItemCardImage image={image}>
-        {/*  */}
-        <View style={styles.cardRatingContainer}>
-          <Icon
-            options={{
-              source: ICONS.STAR_FILLED,
-              tintColor: COLORS.primaryOrangeHex,
-              style: { width: 18, height: 18 },
-            }}
-          />
-          <Text style={styles.cardRatingText}>{averageRating}</Text>
-        </View>
-        {/*  */}
+        <Rating averageRating={averageRating} />
       </FoodItemCardImage>
       <Text style={styles.cardTitle}>{name}</Text>
       <Text style={styles.cardSubTitle}>{specialIngredient}</Text>
@@ -87,25 +76,6 @@ const styles = StyleSheet.create({
     padding: 15,
   },
 
-  cardRatingContainer: {
-    flexDirection: "row",
-    backgroundColor: COLORS.primaryBlackRGBA,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 10,
-    paddingHorizontal: 15,
-    position: "absolute",
-    borderBottomLeftRadius: 20,
-    borderTopRightRadius: 20,
-    top: 0,
-    right: 0,
-  },
-  cardRatingText: {
-    fontFamily: "poppins-medium",
-    color: COLORS.primaryWhiteHex,
-    fontSize: 14,
-    lineHeight: 22,
-  },
   cardTitle: {
     fontFamily: "poppins-medium",
     color: COLORS.primaryWhiteHex,
