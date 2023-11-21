@@ -6,6 +6,8 @@ export const JapaneseFoodData = [
     description:
       "Delight in a combination of fresh sushi rolls featuring a variety of seafood and vegetables. Served with soy sauce, pickled ginger, and wasabi.",
     ingredients: "Rice, Seaweed, Fresh Fish, Vegetables",
+    specialIngredient: "Tuna",
+    averageRating: 4.5,
     allergens: "Fish, Soy (soy sauce)",
     prices: [
       { size: "Regular", price: "12.99", currency: "$" },
@@ -21,6 +23,8 @@ export const JapaneseFoodData = [
     description:
       "Grilled chicken glazed with a savory teriyaki sauce, served over a bed of steamed rice and accompanied by stir-fried vegetables.",
     ingredients: "Chicken, Teriyaki Sauce, Rice, Vegetables",
+    specialIngredient: "Teriyaki Glaze",
+    averageRating: 4.2,
     allergens: "Soy (teriyaki sauce)",
     prices: [
       { size: "Regular", price: "10.99", currency: "$" },
@@ -36,6 +40,8 @@ export const JapaneseFoodData = [
     description:
       "A hearty bowl of ramen filled with flavorful broth, chewy noodles, and an assortment of fresh vegetables.",
     ingredients: "Ramen Noodles, Vegetarian Broth, Vegetables",
+    specialIngredient: "Mushrooms",
+    averageRating: 4.0,
     allergens: "Gluten (noodles)",
     prices: [
       { size: "Regular", price: "9.99", currency: "$" },

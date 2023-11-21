@@ -15,6 +15,7 @@ import { Header } from "../components/header";
 import { useJapaneseFoodStore } from "../store/store";
 import { JapaneseFood } from "../types/general";
 
+import { FoodItemCard } from "../components/food-item-card";
 import { FoodListSearchBar } from "../components/food-list-search-bar";
 import { COLORS, FONTSIZE } from "../theme/theme";
 import { getFoodListByCategory } from "../utils/utils";
@@ -74,9 +75,24 @@ export function HomeScreen() {
         data={sortedJapaneseFoodList}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.sortedFoodList}
+        contentContainerStyle={styles.flatListContainer}
         keyExtractor={(item) => `${item.id}`}
-        renderItem={({ item }) => <TouchableOpacity></TouchableOpacity>}
+        renderItem={({ item }) => (
+          <TouchableOpacity>
+            <FoodItemCard
+              name={item.name}
+              averageRating={item.averageRating}
+              id={item.id}
+              image={item.image}
+              index={item.index}
+              onPress={() => {}}
+              price={item.prices[0].price}
+              specialIngredient={item.specialIngredient}
+              type={item.type}
+              key={`${item.name}${item.id}`}
+            />
+          </TouchableOpacity>
+        )}
       />
       {/*  */}
     </View>
@@ -97,7 +113,7 @@ const styles = StyleSheet.create({
     color: COLORS.primaryWhiteHex,
     paddingLeft: 30,
   },
-  sortedFoodList: {
+  flatListContainer: {
     gap: 20,
     paddingVertical: 20,
     paddingHorizontal: 30,
