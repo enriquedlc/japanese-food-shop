@@ -1,5 +1,5 @@
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   FlatList,
   ScrollView,
@@ -43,9 +43,9 @@ export function HomeScreen() {
     JapaneseFood[]
   >(getFoodListByCategory(japaneseFoodList, categoryIndex.category));
 
-  const tabBarHeight = useBottomTabBarHeight();
+  const japaneseFoodListRef = useRef<FlatList>(null);
 
-  console.log("japaneseFoodList", sortedJapaneseFoodList.length);
+  const tabBarHeight = useBottomTabBarHeight();
 
   return (
     <View style={styles.screenContainer}>
@@ -63,6 +63,7 @@ export function HomeScreen() {
           setSearchText={setSearchText}
         />
         <CategoryChooseList
+          listRef={japaneseFoodListRef}
           categories={categories}
           categoryIndex={categoryIndex}
           setCategoryIndex={setCategoryIndex}
@@ -71,6 +72,7 @@ export function HomeScreen() {
         />
         {/* japanese food list */}
         <FlatList
+          ref={japaneseFoodListRef}
           data={sortedJapaneseFoodList}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
