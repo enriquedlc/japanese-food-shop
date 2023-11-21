@@ -1,5 +1,5 @@
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   FlatList,
   ScrollView,
@@ -15,6 +15,7 @@ import { Header } from "../components/header";
 import { useJapaneseFoodStore } from "../store/store";
 import { JapaneseFood } from "../types/general";
 
+import { FoodItemCard } from "../components/food-item-card";
 import { FoodListSearchBar } from "../components/food-list-search-bar";
 import { COLORS, FONTSIZE } from "../theme/theme";
 import { getFoodListByCategory } from "../utils/utils";
@@ -26,7 +27,7 @@ const getCategories = (japaneseFoodList: JapaneseFood[]) => {
 };
 
 export function HomeScreen() {
-  const { japaneseFoodList, japaneseAllergensList } = useJapaneseFoodStore(
+  const { japaneseFoodList, japaneseDrinkList } = useJapaneseFoodStore(
     (state) => state,
   );
 
@@ -42,9 +43,9 @@ export function HomeScreen() {
     JapaneseFood[]
   >(getFoodListByCategory(japaneseFoodList, categoryIndex.category));
 
-  const tabBarHeight = useBottomTabBarHeight();
+  const japaneseFoodListRef = useRef<FlatList>(null);
 
-  console.log("japaneseFoodList", sortedJapaneseFoodList.length);
+  const tabBarHeight = useBottomTabBarHeight();
 
   return (
     <View style={styles.screenContainer}>
@@ -62,23 +63,68 @@ export function HomeScreen() {
           setSearchText={setSearchText}
         />
         <CategoryChooseList
+          listRef={japaneseFoodListRef}
           categories={categories}
           categoryIndex={categoryIndex}
           setCategoryIndex={setCategoryIndex}
           japaneseFoodList={japaneseFoodList}
           setSortedJapaneseFoodList={setSortedJapaneseFoodList}
         />
+        {/* japanese food list */}
+        <FlatList
+          ref={japaneseFoodListRef}
+          data={sortedJapaneseFoodList}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.flatListContainer}
+          keyExtractor={(item) => `${item.id}`}
+          renderItem={({ item }) => (
+            <TouchableOpacity>
+              <FoodItemCard
+                name={item.name}
+                averageRating={item.averageRating}
+                id={item.id}
+                image={item.image}
+                index={item.index}
+                onPress={() => {}}
+                price={item.prices[0].price}
+                specialIngredient={item.specialIngredient}
+                type={item.type}
+                key={`${item.name}${item.id}`}
+              />
+            </TouchableOpacity>
+          )}
+        />
+        {/* japanese drink list */}
+        <Text style={styles.drinksTitle}>Drinks</Text>
+        <FlatList
+          data={japaneseDrinkList}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={[
+            styles.flatListContainer,
+            { marginBottom: tabBarHeight },
+          ]}
+          keyExtractor={(item) => `${item.id}`}
+          renderItem={({ item }) => (
+            <TouchableOpacity>
+              <FoodItemCard
+                name={item.name}
+                averageRating={item.averageRating}
+                id={item.id}
+                image={item.image}
+                index={item.index}
+                onPress={() => {}}
+                price={item.price}
+                specialIngredient={item.specialIngredient}
+                type={item.type}
+                key={`${item.name}${item.id}`}
+              />
+            </TouchableOpacity>
+          )}
+        />
+        {/*  */}
       </ScrollView>
-      {/*  */}
-      <FlatList
-        data={sortedJapaneseFoodList}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.sortedFoodList}
-        keyExtractor={(item) => `${item.id}`}
-        renderItem={({ item }) => <TouchableOpacity></TouchableOpacity>}
-      />
-      {/*  */}
     </View>
   );
 }
@@ -97,9 +143,16 @@ const styles = StyleSheet.create({
     color: COLORS.primaryWhiteHex,
     paddingLeft: 30,
   },
-  sortedFoodList: {
+  flatListContainer: {
     gap: 20,
     paddingVertical: 20,
     paddingHorizontal: 30,
+  },
+  drinksTitle: {
+    fontSize: 18,
+    marginLeft: 30,
+    marginTop: 20,
+    fontFamily: "poppins-medium",
+    color: COLORS.secondaryLightGreyHex,
   },
 });

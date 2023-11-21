@@ -1,4 +1,5 @@
 import {
+  FlatList,
   ScrollView,
   StyleSheet,
   Text,
@@ -9,9 +10,11 @@ import {
 import { JapaneseFood } from "../types/general";
 import { getFoodListByCategory } from "../utils/utils";
 
+import { RefObject } from "react";
 import { COLORS, FONTSIZE } from "../theme/theme";
 
 interface CategoryChooseListProps {
+  listRef: RefObject<FlatList<any>>;
   categories: string[];
   categoryIndex: { index: number; category: string };
   setCategoryIndex: (index: { index: number; category: string }) => void;
@@ -21,6 +24,7 @@ interface CategoryChooseListProps {
 
 export function CategoryChooseList(props: CategoryChooseListProps) {
   const {
+    listRef,
     categories,
     categoryIndex,
     setCategoryIndex,
@@ -41,6 +45,10 @@ export function CategoryChooseList(props: CategoryChooseListProps) {
         >
           <TouchableOpacity
             onPress={() => {
+              listRef.current?.scrollToOffset({
+                offset: 0,
+                animated: true,
+              });
               setCategoryIndex({ index, category });
               setSortedJapaneseFoodList([
                 ...getFoodListByCategory(japaneseFoodList, categories[index]),

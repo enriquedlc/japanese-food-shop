@@ -37,6 +37,21 @@ export function FoodListSearchBar(props: FoodListSearchBarProps) {
         placeholderTextColor={COLORS.primaryLightGreyHex}
         style={styles.textInput}
       />
+      {searchText.length > 0 && (
+        <TouchableOpacity>
+          <Icon
+            options={{
+              source: ICONS.CLOSE_ICON,
+              tintColor: COLORS.primaryLightGreyHex,
+              style: {
+                marginHorizontal: 20,
+                width: 24,
+                height: 24,
+              },
+            }}
+          />
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
