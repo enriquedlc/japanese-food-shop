@@ -11,6 +11,7 @@ import {
 
 import { ICONS } from "../../assets";
 import { COLORS } from "../theme/theme";
+import { BackGroundIcon } from "./background-icon";
 import { Icon } from "./icon";
 
 const CARD_WIDTH = Dimensions.get("window").width * 0.3;
@@ -54,20 +55,26 @@ export function FoodItemCard(props: FoodItemCardProps) {
             options={{
               source: ICONS.STAR_FILLED,
               tintColor: COLORS.primaryOrangeHex,
+              style: { width: 18, height: 18 },
             }}
           />
           <Text style={styles.cardRatingText}>{averageRating}</Text>
         </View>
         {/*  */}
       </ImageBackground>
-      <Text>{name}</Text>
-      <Text>{specialIngredient}</Text>
-      <View>
-        <Text>
-          <Text>{price}</Text> €
+      <Text style={styles.cardTitle}>{name}</Text>
+      <Text style={styles.cardSubTitle}>{specialIngredient}</Text>
+      <View style={styles.cardFooter}>
+        <Text style={styles.cardPriceCurrency}>
+          <Text style={styles.cardPrice}>{price}</Text> €
         </Text>
         <TouchableOpacity>
-          <BackGroundIcon />
+          <BackGroundIcon
+            backgroundColor={COLORS.primaryOrangeHex}
+            color={COLORS.primaryWhiteHex}
+            size={12}
+            name={ICONS.PLUS}
+          />
         </TouchableOpacity>
       </View>
     </LinearGradient>
@@ -76,10 +83,8 @@ export function FoodItemCard(props: FoodItemCardProps) {
 
 const styles = StyleSheet.create({
   linearCardGradient: {
-    width: CARD_WIDTH,
-    height: CARD_WIDTH * 1.5,
-    borderRadius: 20,
-    marginHorizontal: 10,
+    borderRadius: 25,
+    padding: 15,
   },
   cardImageBackground: {
     width: CARD_WIDTH,
@@ -88,6 +93,51 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     overflow: "hidden",
   },
-  cardRatingContainer: {},
-  cardRatingText: {},
+  cardRatingContainer: {
+    flexDirection: "row",
+    backgroundColor: COLORS.primaryBlackRGBA,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+    paddingHorizontal: 15,
+    position: "absolute",
+    borderBottomLeftRadius: 20,
+    borderTopRightRadius: 20,
+    top: 0,
+    right: 0,
+  },
+  cardRatingText: {
+    fontFamily: "poppins-medium",
+    color: COLORS.primaryWhiteHex,
+    fontSize: 14,
+    lineHeight: 22,
+  },
+  cardTitle: {
+    fontFamily: "poppins-medium",
+    color: COLORS.primaryWhiteHex,
+    fontSize: 14,
+    width: CARD_WIDTH,
+  },
+  cardSubTitle: {
+    fontFamily: "poppins-light",
+    color: COLORS.primaryWhiteHex,
+    fontSize: 12,
+  },
+  cardFooter: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 15,
+  },
+  cardPriceCurrency: {
+    fontFamily: "poppins-semibold",
+    color: COLORS.primaryOrangeHex,
+    fontSize: 16,
+  },
+  cardPrice: {
+    fontFamily: "poppins-semibold",
+    color: COLORS.primaryWhiteHex,
+    fontSize: 14,
+    lineHeight: 22,
+  },
 });
