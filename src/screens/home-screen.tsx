@@ -27,7 +27,7 @@ const getCategories = (japaneseFoodList: JapaneseFood[]) => {
 };
 
 export function HomeScreen() {
-  const { japaneseFoodList, japaneseAllergensList } = useJapaneseFoodStore(
+  const { japaneseFoodList, japaneseDrinkList } = useJapaneseFoodStore(
     (state) => state,
   );
 
@@ -69,32 +69,60 @@ export function HomeScreen() {
           japaneseFoodList={japaneseFoodList}
           setSortedJapaneseFoodList={setSortedJapaneseFoodList}
         />
+        {/* japanese food list */}
+        <FlatList
+          data={sortedJapaneseFoodList}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.flatListContainer}
+          keyExtractor={(item) => `${item.id}`}
+          renderItem={({ item }) => (
+            <TouchableOpacity>
+              <FoodItemCard
+                name={item.name}
+                averageRating={item.averageRating}
+                id={item.id}
+                image={item.image}
+                index={item.index}
+                onPress={() => {}}
+                price={item.prices[0].price}
+                specialIngredient={item.specialIngredient}
+                type={item.type}
+                key={`${item.name}${item.id}`}
+              />
+            </TouchableOpacity>
+          )}
+        />
+        {/* japanese drink list */}
+        <Text style={styles.drinksTitle}>Drinks</Text>
+        <FlatList
+          data={japaneseDrinkList}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={[
+            styles.flatListContainer,
+            { marginBottom: tabBarHeight },
+          ]}
+          keyExtractor={(item) => `${item.id}`}
+          renderItem={({ item }) => (
+            <TouchableOpacity>
+              <FoodItemCard
+                name={item.name}
+                averageRating={item.averageRating}
+                id={item.id}
+                image={item.image}
+                index={item.index}
+                onPress={() => {}}
+                price={item.price}
+                specialIngredient={item.specialIngredient}
+                type={item.type}
+                key={`${item.name}${item.id}`}
+              />
+            </TouchableOpacity>
+          )}
+        />
+        {/*  */}
       </ScrollView>
-      {/*  */}
-      <FlatList
-        data={sortedJapaneseFoodList}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.flatListContainer}
-        keyExtractor={(item) => `${item.id}`}
-        renderItem={({ item }) => (
-          <TouchableOpacity>
-            <FoodItemCard
-              name={item.name}
-              averageRating={item.averageRating}
-              id={item.id}
-              image={item.image}
-              index={item.index}
-              onPress={() => {}}
-              price={item.prices[0].price}
-              specialIngredient={item.specialIngredient}
-              type={item.type}
-              key={`${item.name}${item.id}`}
-            />
-          </TouchableOpacity>
-        )}
-      />
-      {/*  */}
     </View>
   );
 }
@@ -117,5 +145,12 @@ const styles = StyleSheet.create({
     gap: 20,
     paddingVertical: 20,
     paddingHorizontal: 30,
+  },
+  drinksTitle: {
+    fontSize: 18,
+    marginLeft: 30,
+    marginTop: 20,
+    fontFamily: "poppins-medium",
+    color: COLORS.secondaryLightGreyHex,
   },
 });
