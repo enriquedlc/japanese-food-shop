@@ -1,3 +1,5 @@
+import { ImageProps } from "react-native";
+
 interface Price {
   size: string;
   price: string;
@@ -8,6 +10,7 @@ export interface JapaneseFood {
   id: string;
   name: string;
   category: string;
+  image: ImageProps["source"];
   description: string;
   ingredients: string;
   allergens: string;

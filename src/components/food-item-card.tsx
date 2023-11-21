@@ -1,10 +1,10 @@
 import { LinearGradient } from "expo-linear-gradient";
 import {
   Dimensions,
+  ImageBackground,
   ImageProps,
   StyleSheet,
   Text,
-  ImageBackground,
 } from "react-native";
 
 import { COLORS } from "../theme/theme";
@@ -43,7 +43,7 @@ export function FoodItemCard(props: FoodItemCardProps) {
       style={styles.linearCardGradient}
       colors={[COLORS.primaryGreyHex, COLORS.primaryBlackHex]}
     >
-      <ImageBackground source={}/>
+      <ImageBackground source={image} />
       <Text>{name}</Text>
     </LinearGradient>
   );

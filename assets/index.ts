@@ -8,3 +8,9 @@ import VEGETARIAN_RAMEN from "./food/vegetarian-ramen.jpeg";
 export const ICONS = {
   SEARCH_ICON,
 };
+
+export const FOOD = {
+  TERIYAKI_CHICKEN_BOWL,
+  SUSHI_ROLL_COMBO,
+  VEGETARIAN_RAMEN,
+};
