@@ -5,9 +5,13 @@ import {
   ImageProps,
   StyleSheet,
   Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
+import { ICONS } from "../../assets";
 import { COLORS } from "../theme/theme";
+import { Icon } from "./icon";
 
 const CARD_WIDTH = Dimensions.get("window").width * 0.3;
 
@@ -43,8 +47,29 @@ export function FoodItemCard(props: FoodItemCardProps) {
       style={styles.linearCardGradient}
       colors={[COLORS.primaryGreyHex, COLORS.primaryBlackHex]}
     >
-      <ImageBackground source={image} style={styles.cardImageBackground} />
+      <ImageBackground source={image} style={styles.cardImageBackground}>
+        {/*  */}
+        <View style={styles.cardRatingContainer}>
+          <Icon
+            options={{
+              source: ICONS.STAR_FILLED,
+              tintColor: COLORS.primaryOrangeHex,
+            }}
+          />
+          <Text style={styles.cardRatingText}>{averageRating}</Text>
+        </View>
+        {/*  */}
+      </ImageBackground>
       <Text>{name}</Text>
+      <Text>{specialIngredient}</Text>
+      <View>
+        <Text>
+          <Text>{price}</Text> €
+        </Text>
+        <TouchableOpacity>
+          <BackGroundIcon />
+        </TouchableOpacity>
+      </View>
     </LinearGradient>
   );
 }
@@ -63,4 +88,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     overflow: "hidden",
   },
+  cardRatingContainer: {},
+  cardRatingText: {},
 });
