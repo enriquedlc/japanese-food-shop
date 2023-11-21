@@ -1,7 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import {
   Dimensions,
-  ImageBackground,
   ImageProps,
   StyleSheet,
   Text,
@@ -12,6 +11,7 @@ import {
 import { ICONS } from "../../assets";
 import { COLORS } from "../theme/theme";
 import { BackGroundIcon } from "./background-icon";
+import { FoodItemCardImage } from "./food-item-card-image";
 import { Icon } from "./icon";
 
 const CARD_WIDTH = Dimensions.get("window").width * 0.3;
@@ -48,7 +48,7 @@ export function FoodItemCard(props: FoodItemCardProps) {
       style={styles.linearCardGradient}
       colors={[COLORS.primaryGreyHex, COLORS.primaryBlackHex]}
     >
-      <ImageBackground source={image} style={styles.cardImageBackground}>
+      <FoodItemCardImage image={image}>
         {/*  */}
         <View style={styles.cardRatingContainer}>
           <Icon
@@ -61,7 +61,7 @@ export function FoodItemCard(props: FoodItemCardProps) {
           <Text style={styles.cardRatingText}>{averageRating}</Text>
         </View>
         {/*  */}
-      </ImageBackground>
+      </FoodItemCardImage>
       <Text style={styles.cardTitle}>{name}</Text>
       <Text style={styles.cardSubTitle}>{specialIngredient}</Text>
       <View style={styles.cardFooter}>
@@ -86,13 +86,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     padding: 15,
   },
-  cardImageBackground: {
-    width: CARD_WIDTH,
-    height: CARD_WIDTH,
-    borderRadius: 20,
-    marginBottom: 10,
-    overflow: "hidden",
-  },
+
   cardRatingContainer: {
     flexDirection: "row",
     backgroundColor: COLORS.primaryBlackRGBA,
