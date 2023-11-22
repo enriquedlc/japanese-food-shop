@@ -38,6 +38,7 @@ export function FoodListSearchBar(props: FoodListSearchBarProps) {
         onChange={(e) => setSearchText(e.nativeEvent.text)}
         placeholderTextColor={COLORS.primaryLightGreyHex}
         style={styles.textInput}
+        onChangeText={(text) => searchFood(text)}
       />
       {searchText.length > 0 && (
         <TouchableOpacity onPress={clearSearch}>

@@ -8,14 +8,14 @@ import {
   View,
 } from "react-native";
 
+import { FoodListSearchBar } from "../components/food-list-search-bar";
 import { Header } from "../components/header";
+import { JapaneseDrinkList } from "../components/lists/japanese-drink-list";
+import { JapaneseFoodList } from "../components/lists/japanese-food-list";
 
 import { useJapaneseFoodStore } from "../store/store";
 import { JapaneseFood } from "../types/general";
 
-import { FoodListSearchBar } from "../components/food-list-search-bar";
-import { JapaneseDrinkList } from "../components/lists/japanese-drink-list";
-import { JapaneseFoodList } from "../components/lists/japanese-food-list";
 import { COLORS, FONTSIZE } from "../theme/theme";
 import { getFoodListByCategory } from "../utils/utils";
 import { CategoryChooseList } from "./category-choose-list";
@@ -76,7 +76,6 @@ export function HomeScreen() {
         <Text style={styles.screenTitle}>
           Explore your favorite {"\n"}japanese meal
         </Text>
-
         <FoodListSearchBar
           searchText={searchText}
           setSearchText={setSearchText}
