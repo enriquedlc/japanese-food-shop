@@ -1,6 +1,7 @@
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { useRef, useState } from "react";
 import {
+  Dimensions,
   FlatList,
   ScrollView,
   StatusBar,
@@ -44,8 +45,25 @@ export function HomeScreen() {
   >(getFoodListByCategory(japaneseFoodList, categoryIndex.category));
 
   const japaneseFoodListRef = useRef<FlatList>(null);
-
   const tabBarHeight = useBottomTabBarHeight();
+
+  const searchFood = (text: string) => {
+    if (text !== "")
+      japaneseFoodListRef.current?.scrollToIndex({ index: 0, animated: true });
+    setCategoryIndex({ index: 0, category: "All" });
+    setSortedJapaneseFoodList([
+      ...japaneseFoodList.filter((food) =>
+        food.name.toLowerCase().includes(text.toLowerCase()),
+      ),
+    ]);
+  };
+
+  const clearSearch = () => {
+    japaneseFoodListRef.current?.scrollToIndex({ index: 0, animated: true });
+    setCategoryIndex({ index: 0, category: "All" });
+    setSortedJapaneseFoodList(japaneseFoodList);
+    setSearchText("");
+  };
 
   return (
     <View style={styles.screenContainer}>
@@ -61,6 +79,8 @@ export function HomeScreen() {
         <FoodListSearchBar
           searchText={searchText}
           setSearchText={setSearchText}
+          searchFood={searchFood}
+          clearSearch={clearSearch}
         />
         <CategoryChooseList
           listRef={japaneseFoodListRef}
@@ -73,6 +93,11 @@ export function HomeScreen() {
         {/* japanese food list */}
         <FlatList
           ref={japaneseFoodListRef}
+          ListEmptyComponent={
+            <View style={styles.emptyListContainer}>
+              <Text style={styles.noFoodFoundText}>No food found...</Text>
+            </View>
+          }
           data={sortedJapaneseFoodList}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
@@ -154,5 +179,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontFamily: "poppins-medium",
     color: COLORS.secondaryLightGreyHex,
+  },
+  noFoodFoundText: {
+    fontSize: 16,
+    fontFamily: "poppins-medium",
+    color: COLORS.secondaryLightGreyHex,
+    alignSelf: "center",
+  },
+  emptyListContainer: {
+    width: Dimensions.get("window").width - 60,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

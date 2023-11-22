@@ -7,16 +7,16 @@ import { Icon } from "./icon";
 interface FoodListSearchBarProps {
   searchText: string;
   setSearchText: (text: string) => void;
+  searchFood: (text: string) => void;
+  clearSearch: () => void;
 }
 
 export function FoodListSearchBar(props: FoodListSearchBarProps) {
-  const { searchText, setSearchText } = props;
-
-  console.log(searchText.length > 0);
+  const { searchText, setSearchText, clearSearch, searchFood } = props;
 
   return (
     <View style={styles.inputContainer}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => searchFood(searchText)}>
         <Icon
           options={{
             source: ICONS.SEARCH_ICON,
@@ -40,7 +40,7 @@ export function FoodListSearchBar(props: FoodListSearchBarProps) {
         style={styles.textInput}
       />
       {searchText.length > 0 && (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={clearSearch}>
           <Icon
             options={{
               source: ICONS.CLOSE,
