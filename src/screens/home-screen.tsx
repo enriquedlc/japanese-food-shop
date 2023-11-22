@@ -17,7 +17,7 @@ import { JapaneseFood } from "../types/general";
 
 import { FoodItemCard } from "../components/food-item-card";
 import { FoodListSearchBar } from "../components/food-list-search-bar";
-import { JapaneseFoodList } from "../components/japanese-food-list";
+import { JapaneseFoodList } from "../components/lists/japanese-food-list";
 import { COLORS, FONTSIZE } from "../theme/theme";
 import { getFoodListByCategory } from "../utils/utils";
 import { CategoryChooseList } from "./category-choose-list";
