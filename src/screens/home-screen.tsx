@@ -1,7 +1,6 @@
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { useRef, useState } from "react";
 import {
-  Dimensions,
   FlatList,
   ScrollView,
   StatusBar,
@@ -18,6 +17,7 @@ import { JapaneseFood } from "../types/general";
 
 import { FoodItemCard } from "../components/food-item-card";
 import { FoodListSearchBar } from "../components/food-list-search-bar";
+import { JapaneseFoodList } from "../components/japanese-food-list";
 import { COLORS, FONTSIZE } from "../theme/theme";
 import { getFoodListByCategory } from "../utils/utils";
 import { CategoryChooseList } from "./category-choose-list";
@@ -91,34 +91,9 @@ export function HomeScreen() {
           setSortedJapaneseFoodList={setSortedJapaneseFoodList}
         />
         {/* japanese food list */}
-        <FlatList
-          ref={japaneseFoodListRef}
-          ListEmptyComponent={
-            <View style={styles.emptyListContainer}>
-              <Text style={styles.noFoodFoundText}>No food found...</Text>
-            </View>
-          }
-          data={sortedJapaneseFoodList}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.flatListContainer}
-          keyExtractor={(item) => `${item.id}`}
-          renderItem={({ item }) => (
-            <TouchableOpacity>
-              <FoodItemCard
-                name={item.name}
-                averageRating={item.averageRating}
-                id={item.id}
-                image={item.image}
-                index={item.index}
-                onPress={() => {}}
-                price={item.prices[0].price}
-                specialIngredient={item.specialIngredient}
-                type={item.type}
-                key={`${item.name}${item.id}`}
-              />
-            </TouchableOpacity>
-          )}
+        <JapaneseFoodList
+          sortedJapaneseFoodList={sortedJapaneseFoodList}
+          japaneseFoodListRef={japaneseFoodListRef}
         />
         {/* japanese drink list */}
         <Text style={styles.drinksTitle}>Drinks</Text>
@@ -179,16 +154,5 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontFamily: "poppins-medium",
     color: COLORS.secondaryLightGreyHex,
-  },
-  noFoodFoundText: {
-    fontSize: 16,
-    fontFamily: "poppins-medium",
-    color: COLORS.secondaryLightGreyHex,
-    alignSelf: "center",
-  },
-  emptyListContainer: {
-    width: Dimensions.get("window").width - 60,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
