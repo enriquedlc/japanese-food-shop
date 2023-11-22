@@ -1,20 +1,22 @@
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 
 import { ICONS } from "../../assets";
-import { BORDERRADIUS, COLORS, FONTSIZE, SPACING } from "../theme/theme";
+import { BORDERRADIUS, COLORS, SPACING } from "../theme/theme";
 import { Icon } from "./icon";
 
 interface FoodListSearchBarProps {
   searchText: string;
   setSearchText: (text: string) => void;
+  searchFood: (text: string) => void;
+  clearSearch: () => void;
 }
 
 export function FoodListSearchBar(props: FoodListSearchBarProps) {
-  const { searchText, setSearchText } = props;
+  const { searchText, setSearchText, clearSearch, searchFood } = props;
 
   return (
     <View style={styles.inputContainer}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => searchFood(searchText)}>
         <Icon
           options={{
             source: ICONS.SEARCH_ICON,
@@ -38,13 +40,13 @@ export function FoodListSearchBar(props: FoodListSearchBarProps) {
         style={styles.textInput}
       />
       {searchText.length > 0 && (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={clearSearch}>
           <Icon
             options={{
-              source: ICONS.CLOSE_ICON,
+              source: ICONS.CLOSE,
               tintColor: COLORS.primaryLightGreyHex,
               style: {
-                marginHorizontal: 20,
+                marginHorizontal: 15,
                 width: 24,
                 height: 24,
               },
@@ -65,10 +67,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   textInput: {
-    height: SPACING.space_20 * 3,
-    width: "100%",
+    flex: 1,
+    height: 20 * 3,
     fontFamily: "poppins-medium",
-    fontSize: FONTSIZE.size_14,
+    fontSize: 14,
     color: COLORS.primaryWhiteHex,
   },
 });

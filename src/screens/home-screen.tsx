@@ -17,6 +17,7 @@ import { JapaneseFood } from "../types/general";
 
 import { FoodItemCard } from "../components/food-item-card";
 import { FoodListSearchBar } from "../components/food-list-search-bar";
+import { JapaneseFoodList } from "../components/japanese-food-list";
 import { COLORS, FONTSIZE } from "../theme/theme";
 import { getFoodListByCategory } from "../utils/utils";
 import { CategoryChooseList } from "./category-choose-list";
@@ -44,8 +45,25 @@ export function HomeScreen() {
   >(getFoodListByCategory(japaneseFoodList, categoryIndex.category));
 
   const japaneseFoodListRef = useRef<FlatList>(null);
-
   const tabBarHeight = useBottomTabBarHeight();
+
+  const searchFood = (text: string) => {
+    if (text !== "")
+      japaneseFoodListRef.current?.scrollToIndex({ index: 0, animated: true });
+    setCategoryIndex({ index: 0, category: "All" });
+    setSortedJapaneseFoodList([
+      ...japaneseFoodList.filter((food) =>
+        food.name.toLowerCase().includes(text.toLowerCase()),
+      ),
+    ]);
+  };
+
+  const clearSearch = () => {
+    japaneseFoodListRef.current?.scrollToIndex({ index: 0, animated: true });
+    setCategoryIndex({ index: 0, category: "All" });
+    setSortedJapaneseFoodList(japaneseFoodList);
+    setSearchText("");
+  };
 
   return (
     <View style={styles.screenContainer}>
@@ -61,6 +79,8 @@ export function HomeScreen() {
         <FoodListSearchBar
           searchText={searchText}
           setSearchText={setSearchText}
+          searchFood={searchFood}
+          clearSearch={clearSearch}
         />
         <CategoryChooseList
           listRef={japaneseFoodListRef}
@@ -71,29 +91,9 @@ export function HomeScreen() {
           setSortedJapaneseFoodList={setSortedJapaneseFoodList}
         />
         {/* japanese food list */}
-        <FlatList
-          ref={japaneseFoodListRef}
-          data={sortedJapaneseFoodList}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.flatListContainer}
-          keyExtractor={(item) => `${item.id}`}
-          renderItem={({ item }) => (
-            <TouchableOpacity>
-              <FoodItemCard
-                name={item.name}
-                averageRating={item.averageRating}
-                id={item.id}
-                image={item.image}
-                index={item.index}
-                onPress={() => {}}
-                price={item.prices[0].price}
-                specialIngredient={item.specialIngredient}
-                type={item.type}
-                key={`${item.name}${item.id}`}
-              />
-            </TouchableOpacity>
-          )}
+        <JapaneseFoodList
+          sortedJapaneseFoodList={sortedJapaneseFoodList}
+          japaneseFoodListRef={japaneseFoodListRef}
         />
         {/* japanese drink list */}
         <Text style={styles.drinksTitle}>Drinks</Text>
