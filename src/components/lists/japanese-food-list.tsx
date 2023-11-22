@@ -1,17 +1,10 @@
 import { RefObject } from "react";
-import {
-  Dimensions,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
 
-import { FoodItemCard } from "./food-item-card";
+import { FoodItemCard } from "../food-item-card";
+import { EmptyList } from "./empty-list";
 
-import { COLORS } from "../theme/theme";
-import { JapaneseFood } from "../types/general";
+import { JapaneseFood } from "../../types/general";
 
 interface JapaneseFoodListProps {
   sortedJapaneseFoodList: JapaneseFood[];
@@ -23,11 +16,7 @@ export function JapaneseFoodList(props: JapaneseFoodListProps) {
   return (
     <FlatList
       ref={japaneseFoodListRef}
-      ListEmptyComponent={
-        <View style={styles.emptyListContainer}>
-          <Text style={styles.noFoodFoundText}>No food found...</Text>
-        </View>
-      }
+      ListEmptyComponent={<EmptyList text="No food found..." />}
       data={sortedJapaneseFoodList}
       horizontal={true}
       showsHorizontalScrollIndicator={false}
@@ -58,16 +47,5 @@ const styles = StyleSheet.create({
     gap: 20,
     paddingVertical: 20,
     paddingHorizontal: 30,
-  },
-  noFoodFoundText: {
-    fontSize: 16,
-    fontFamily: "poppins-medium",
-    color: COLORS.secondaryLightGreyHex,
-    alignSelf: "center",
-  },
-  emptyListContainer: {
-    width: Dimensions.get("window").width - 60,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
