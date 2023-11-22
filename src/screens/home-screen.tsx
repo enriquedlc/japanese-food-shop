@@ -26,6 +26,7 @@ const getCategories = (japaneseFoodList: JapaneseFood[]) => {
 };
 
 export function HomeScreen() {
+  /* hooks  */
   const { japaneseFoodList } = useJapaneseFoodStore((state) => state);
 
   const [categories, setCategories] = useState<string[]>(
@@ -42,9 +43,13 @@ export function HomeScreen() {
 
   const japaneseFoodListRef = useRef<FlatList>(null);
 
+  /* functions  */
+  const scrollToBeginning = () =>
+    japaneseFoodListRef.current?.scrollToIndex({ index: 0, animated: true });
+
   const searchFood = (text: string) => {
-    if (text !== "")
-      japaneseFoodListRef.current?.scrollToIndex({ index: 0, animated: true });
+    if (text !== "") scrollToBeginning();
+
     setCategoryIndex({ index: 0, category: "All" });
     setSortedJapaneseFoodList([
       ...japaneseFoodList.filter((food) =>
@@ -54,7 +59,7 @@ export function HomeScreen() {
   };
 
   const clearSearch = () => {
-    japaneseFoodListRef.current?.scrollToIndex({ index: 0, animated: true });
+    scrollToBeginning();
     setCategoryIndex({ index: 0, category: "All" });
     setSortedJapaneseFoodList(japaneseFoodList);
     setSearchText("");
@@ -71,6 +76,7 @@ export function HomeScreen() {
         <Text style={styles.screenTitle}>
           Explore your favorite {"\n"}japanese meal
         </Text>
+
         <FoodListSearchBar
           searchText={searchText}
           setSearchText={setSearchText}
@@ -91,7 +97,6 @@ export function HomeScreen() {
         />
         <Text style={styles.drinksTitle}>Drinks</Text>
         <JapaneseDrinkList />
-        {/*  */}
       </ScrollView>
     </View>
   );
