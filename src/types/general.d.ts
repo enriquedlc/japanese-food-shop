@@ -20,3 +20,9 @@ export interface JapaneseFood {
   averageRating: number;
   specialIngredient: string;
 }
+
+type RootStackParamList = {
+  tabNavigator: undefined;
+  detailsScreen: undefined;
+  paymentScreen: undefined;
+};
