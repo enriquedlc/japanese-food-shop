@@ -1,13 +1,20 @@
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
 
 import { useJapaneseFoodStore } from "../../store/store";
 import { FoodItemCard } from "../food-item-card";
 
+import { RootStackParamList } from "../../types/general";
+
 export function JapaneseDrinkList() {
   const tabBarHeight = useBottomTabBarHeight();
 
   const { japaneseDrinkList } = useJapaneseFoodStore((state) => state);
+
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
     <FlatList
@@ -20,7 +27,7 @@ export function JapaneseDrinkList() {
       ]}
       keyExtractor={(item) => `${item.id}`}
       renderItem={({ item }) => (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("detailsScreen")}>
           <FoodItemCard
             name={item.name}
             averageRating={item.averageRating}
