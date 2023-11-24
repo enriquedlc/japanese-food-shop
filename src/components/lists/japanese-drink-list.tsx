@@ -35,7 +35,7 @@ export function JapaneseDrinkList() {
             image={item.image}
             index={item.index}
             onPress={() => {}}
-            price={item.price}
+            price={item.prices[0].price}
             specialIngredient={item.specialIngredient}
             type={item.type}
             key={`${item.name}${item.id}`}
