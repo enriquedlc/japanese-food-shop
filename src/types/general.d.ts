@@ -36,8 +36,14 @@ interface JapaneseDrink {
 
 type JapaneseMenu = JapaneseFood | JapaneseDrink;
 
+interface DetailScreenParams {
+  index: number;
+  id: string;
+  type: string;
+}
+
 type RootStackParamList = {
   tabNavigator: undefined;
-  detailsScreen: undefined;
+  detailsScreen: DetailScreenParams;
   paymentScreen: undefined;
 };

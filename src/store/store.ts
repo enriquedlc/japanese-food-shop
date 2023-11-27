@@ -19,6 +19,7 @@ interface Actions {
   addToCart: (cartItem: JapaneseFood | JapaneseDrink) => void;
   calculateCartPrice: () => void;
   addFavourite: (type: string, id: string) => void;
+  removeFromFavourite: (type: string, id: string) => void;
 }
 
 export const useJapaneseFoodStore = create<State & Actions>()(
@@ -108,9 +109,42 @@ export const useJapaneseFoodStore = create<State & Actions>()(
           }),
         );
       },
+      removeFromFavourite: (type, id) => {
+        set(
+          produce((state) => {
+            if (type === "food") {
+              for (let i = 0; i < state.japaneseFoodList.length; i++) {
+                if (state.japaneseFoodList[i].id === id) {
+                  if (state.japaneseFoodList[i].favourite) {
+                    state.japaneseFoodList[i].favourite = false;
+                    const index = state.favouriteJapaneseFoodList.findIndex(
+                      (item) => item.id === id,
+                    );
+                    state.favouriteJapaneseFoodList.splice(index, 1);
+                  }
+                  break;
+                }
+              }
+            } else if (type === "drink") {
+              for (let i = 0; i < state.japaneseDrinkList.length; i++) {
+                if (state.japaneseDrinkList[i].id === id) {
+                  if (state.japaneseDrinkList[i].favourite) {
+                    state.japaneseDrinkList[i].favourite = false;
+                    const index = state.favouriteJapaneseFoodList.findIndex(
+                      (item) => item.id === id,
+                    );
+                    state.favouriteJapaneseFoodList.splice(index, 1);
+                  }
+                  break;
+                }
+              }
+            }
+          }),
+        );
+      },
     }),
     {
-      name: "f",
+      name: "g",
       storage: createJSONStorage(() => AsyncStorage),
     },
   ),

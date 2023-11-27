@@ -29,7 +29,15 @@ export function JapaneseFoodList(props: JapaneseFoodListProps) {
       contentContainerStyle={styles.flatListContainer}
       keyExtractor={(item) => `${item.id}`}
       renderItem={({ item }) => (
-        <TouchableOpacity onPress={() => navigation.navigate("detailsScreen")}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("detailsScreen", {
+              id: item.id,
+              index: item.index,
+              type: item.type,
+            })
+          }
+        >
           <FoodItemCard
             name={item.name}
             averageRating={item.averageRating}
