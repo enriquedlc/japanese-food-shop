@@ -1,22 +1,7 @@
-import { ImageProps } from "react-native";
-
 import { DRINKS } from "../../assets";
-import { Price } from "../types/general";
+import { JapaneseDrink } from "../types/general";
 
 const { BUBBLE_TEA, MATCHA, SAKE, UMESHU } = DRINKS;
-
-type DrinkType = "Tea" | "Alcohol" | "Soft drink";
-
-export interface JapaneseDrink {
-  name: string;
-  averageRating: number;
-  id: string;
-  index: number;
-  prices: Price[];
-  specialIngredient: string;
-  type: DrinkType;
-  image: ImageProps["source"];
-}
 
 export const JapaneseDrinks: JapaneseDrink[] = [
   {
@@ -25,7 +10,7 @@ export const JapaneseDrinks: JapaneseDrink[] = [
     id: "1",
     index: 0,
     specialIngredient: "Matcha powder",
-    type: "Tea",
+    type: "drink",
     image: MATCHA,
     prices: [
       { size: "Small", price: "3.99", currency: "$" },
@@ -39,7 +24,7 @@ export const JapaneseDrinks: JapaneseDrink[] = [
     id: "2",
     index: 1,
     specialIngredient: "Sakamai",
-    type: "Alcohol",
+    type: "drink",
     image: SAKE,
     prices: [
       { size: "Bottle", price: "19.99", currency: "$" },
@@ -52,7 +37,7 @@ export const JapaneseDrinks: JapaneseDrink[] = [
     id: "3",
     index: 2,
     specialIngredient: "Ume plum",
-    type: "Alcohol",
+    type: "drink",
     image: UMESHU,
     prices: [
       { size: "Bottle", price: "14.99", currency: "$" },
@@ -65,7 +50,7 @@ export const JapaneseDrinks: JapaneseDrink[] = [
     id: "4",
     index: 3,
     specialIngredient: "Tapioca pearls",
-    type: "Soft drink",
+    type: "drink",
     image: BUBBLE_TEA,
     prices: [
       { size: "Small", price: "4.99", currency: "$" },

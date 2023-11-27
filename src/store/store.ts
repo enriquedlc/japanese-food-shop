@@ -2,9 +2,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { produce } from "immer";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { JapaneseDrink, JapaneseDrinks } from "../data/japanese-drinks-data";
+import { JapaneseDrinks } from "../data/japanese-drinks-data";
 import { JapaneseFoodData } from "../data/japanese-food-data";
-import { JapaneseFood } from "../types/general";
+import { JapaneseDrink, JapaneseFood, JapaneseMenu } from "../types/general";
 
 interface State {
   cartPrice: number;
@@ -18,6 +18,7 @@ interface State {
 interface Actions {
   addToCart: (cartItem: JapaneseFood | JapaneseDrink) => void;
   calculateCartPrice: () => void;
+  addFavourite: (type: string, id: string) => void;
 }
 
 export const useJapaneseFoodStore = create<State & Actions>()(
@@ -73,6 +74,14 @@ export const useJapaneseFoodStore = create<State & Actions>()(
               }
             }
             state.cartPrice = totalPrice;
+          }),
+        );
+      },
+      addFavourite: (type, id) => {
+        set(
+          produce((state) => {
+            if (type === "food") {
+            }
           }),
         );
       },

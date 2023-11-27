@@ -21,6 +21,19 @@ export interface JapaneseFood {
   specialIngredient: string;
 }
 
+interface JapaneseDrink {
+  name: string;
+  averageRating: number;
+  id: string;
+  index: number;
+  prices: Price[];
+  specialIngredient: string;
+  type: string;
+  image: ImageProps["source"];
+}
+
+type JapaneseMenu = JapaneseFood | JapaneseDrink;
+
 type RootStackParamList = {
   tabNavigator: undefined;
   detailsScreen: undefined;

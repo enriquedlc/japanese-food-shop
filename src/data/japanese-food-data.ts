@@ -18,7 +18,7 @@ export const JapaneseFoodData = [
       { size: "Regular", price: "12.99", currency: "$" },
       { size: "Deluxe", price: "18.99", currency: "$" },
     ],
-    type: "Japanese",
+    type: "food",
     index: 0,
   },
   {
@@ -36,7 +36,7 @@ export const JapaneseFoodData = [
       { size: "Regular", price: "10.99", currency: "$" },
       { size: "Large", price: "14.99", currency: "$" },
     ],
-    type: "Japanese",
+    type: "food",
     index: 1,
   },
   {
@@ -54,7 +54,7 @@ export const JapaneseFoodData = [
       { size: "Regular", price: "9.99", currency: "$" },
       { size: "Large", price: "13.99", currency: "$" },
     ],
-    type: "Japanese",
+    type: "food",
     index: 2,
   },
 ];
