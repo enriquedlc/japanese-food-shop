@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { produce } from "immer";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+
 import { JapaneseDrinks } from "../data/japanese-drinks-data";
 import { JapaneseFoodData } from "../data/japanese-food-data";
 import { JapaneseDrink, JapaneseFood } from "../types/general";
