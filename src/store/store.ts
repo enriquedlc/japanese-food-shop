@@ -4,7 +4,7 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { JapaneseDrinks } from "../data/japanese-drinks-data";
 import { JapaneseFoodData } from "../data/japanese-food-data";
-import { JapaneseDrink, JapaneseFood, JapaneseMenu } from "../types/general";
+import { JapaneseDrink, JapaneseFood } from "../types/general";
 
 interface State {
   cartPrice: number;
@@ -81,6 +81,29 @@ export const useJapaneseFoodStore = create<State & Actions>()(
         set(
           produce((state) => {
             if (type === "food") {
+              for (let i = 0; i < state.japaneseFoodList.length; i++) {
+                if (state.japaneseFoodList[i].id === id) {
+                  if (!state.japaneseFoodList[i].favourite) {
+                    state.japaneseFoodList[i].favourite = true;
+                    state.favouriteJapaneseFoodList.unshift(
+                      state.japaneseFoodList[i],
+                    );
+                  }
+                  break;
+                }
+              }
+            } else if (type === "drink") {
+              for (let i = 0; i < state.japaneseDrinkList.length; i++) {
+                if (state.japaneseDrinkList[i].id === id) {
+                  if (!state.japaneseDrinkList[i].favourite) {
+                    state.japaneseDrinkList[i].favourite = true;
+                    state.favouriteJapaneseFoodList.unshift(
+                      state.japaneseDrinkList[i],
+                    );
+                  }
+                  break;
+                }
+              }
             }
           }),
         );

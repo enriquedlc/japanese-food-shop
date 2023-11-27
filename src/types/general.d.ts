@@ -19,6 +19,7 @@ export interface JapaneseFood {
   index: number;
   averageRating: number;
   specialIngredient: string;
+  favourite?: boolean;
 }
 
 interface JapaneseDrink {
@@ -30,6 +31,7 @@ interface JapaneseDrink {
   specialIngredient: string;
   type: string;
   image: ImageProps["source"];
+  favourite?: boolean;
 }
 
 type JapaneseMenu = JapaneseFood | JapaneseDrink;
