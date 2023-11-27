@@ -16,7 +16,8 @@ interface State {
 }
 
 interface Actions {
-  addToCart: (cartItem) => void;
+  addToCart: (cartItem: JapaneseFood | JapaneseDrink) => void;
+  calculateCartPrice: () => void;
 }
 
 export const useJapaneseFoodStore = create<State & Actions>()(
@@ -59,6 +60,19 @@ export const useJapaneseFoodStore = create<State & Actions>()(
             } else {
               state.cartList.push(cartItem);
             }
+          }),
+        );
+      },
+      calculateCartPrice: () => {
+        set(
+          produce((state) => {
+            let totalPrice = 0;
+            for (const cartItem of state.cartList) {
+              for (const price of cartItem.prices) {
+                totalPrice += price.price * price.quantity;
+              }
+            }
+            state.cartPrice = totalPrice;
           }),
         );
       },
