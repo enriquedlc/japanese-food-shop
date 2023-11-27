@@ -1,10 +1,57 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { ScrollView, StyleSheet, View } from "react-native";
+
+import { useJapaneseFoodStore } from "../store/store";
+
+import { StatusBar } from "react-native";
+import { ImageBackgroundInfo } from "../components/image-background-info";
+import { COLORS } from "../theme/theme";
+import { RootStackParamList } from "../types/general";
 
 export function DetailsScreen() {
+  const route = useRoute<RouteProp<RootStackParamList, "detailsScreen">>();
+  const item = useJapaneseFoodStore((state) =>
+    route.params.type === "food"
+      ? state.japaneseFoodList
+      : state.japaneseDrinkList,
+  )[route.params.index];
+
+  console.log(route.params);
+
   return (
-    <View>
-      <Text>DetailsScreen</Text>
+    <View style={styles.container}>
+      <StatusBar backgroundColor={COLORS.primaryBlackHex} />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollViewFlex}
+      >
+        <ImageBackgroundInfo
+          backButtonEnabled={true}
+          image={{ source: item.image }}
+          type={item.type}
+          id={item.id}
+          favourite={item.favourite}
+          name={item.name}
+          specialIngredient={item.specialIngredient}
+          ingredients={item.specialIngredient}
+          averageRating={item.averageRating}
+          ratingCount={item.ratingCount}
+          toImplement="toImplement"
+          toggleFavourite={() => {}}
+          backButtonComponent={<></>}
+        />
+      </ScrollView>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.primaryBlackHex,
+  },
+  scrollViewFlex: {
+    flexGrow: 1,
+    paddingBottom: 20,
+  },
+});

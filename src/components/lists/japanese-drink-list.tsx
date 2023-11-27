@@ -27,7 +27,15 @@ export function JapaneseDrinkList() {
       ]}
       keyExtractor={(item) => `${item.id}`}
       renderItem={({ item }) => (
-        <TouchableOpacity onPress={() => navigation.navigate("detailsScreen")}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("detailsScreen", {
+              id: item.id,
+              index: item.index,
+              type: item.type,
+            })
+          }
+        >
           <FoodItemCard
             name={item.name}
             averageRating={item.averageRating}
@@ -35,7 +43,7 @@ export function JapaneseDrinkList() {
             image={item.image}
             index={item.index}
             onPress={() => {}}
-            price={item.price}
+            price={item.prices[0].price}
             specialIngredient={item.specialIngredient}
             type={item.type}
             key={`${item.name}${item.id}`}
