@@ -1,11 +1,12 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 import { useJapaneseFoodStore } from "../store/store";
 
-import { RootStackParamList } from "../types/general";
-import { COLORS } from "../theme/theme";
 import { StatusBar } from "react-native";
+import { ImageBackgroundInfo } from "../components/image-background-info";
+import { COLORS } from "../theme/theme";
+import { RootStackParamList } from "../types/general";
 
 export function DetailsScreen() {
   const route = useRoute<RouteProp<RootStackParamList, "detailsScreen">>();
@@ -23,7 +24,23 @@ export function DetailsScreen() {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollViewFlex}
-      ></ScrollView>
+      >
+        <ImageBackgroundInfo
+          backButtonEnabled={true}
+          image={{ source: item.image }}
+          type={item.type}
+          id={item.id}
+          favourite={item.favourite}
+          name={item.name}
+          specialIngredient={item.specialIngredient}
+          ingredients={item.specialIngredient}
+          averageRating={item.averageRating}
+          ratingCount={item.ratingCount}
+          toImplement="toImplement"
+          toggleFavourite={() => {}}
+          backButtonComponent={<></>}
+        />
+      </ScrollView>
     </View>
   );
 }

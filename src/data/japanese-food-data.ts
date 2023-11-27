@@ -1,8 +1,9 @@
 import { FOOD } from "../../assets";
+import { JapaneseFood } from "../types/general";
 
 const { SUSHI_ROLL_COMBO, TERIYAKI_CHICKEN_BOWL, VEGETARIAN_RAMEN } = FOOD;
 
-export const JapaneseFoodData = [
+export const JapaneseFoodData: JapaneseFood[] = [
   {
     id: "J1",
     name: "Sushi Roll Combo",
@@ -20,6 +21,8 @@ export const JapaneseFoodData = [
     ],
     type: "food",
     index: 0,
+    favourite: false,
+    ratingCount: 937,
   },
   {
     id: "J2",
@@ -38,6 +41,8 @@ export const JapaneseFoodData = [
     ],
     type: "food",
     index: 1,
+    favourite: false,
+    ratingCount: 792,
   },
   {
     id: "J3",
@@ -56,5 +61,7 @@ export const JapaneseFoodData = [
     ],
     type: "food",
     index: 2,
+    favourite: false,
+    ratingCount: 512,
   },
 ];

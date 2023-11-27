@@ -17,6 +17,8 @@ export const JapaneseDrinks: JapaneseDrink[] = [
       { size: "Medium", price: "5.99", currency: "$" },
       { size: "Large", price: "7.99", currency: "$" },
     ],
+    favourite: false,
+    ratingCount: 235,
   },
   {
     name: "Sake",
@@ -30,6 +32,8 @@ export const JapaneseDrinks: JapaneseDrink[] = [
       { size: "Bottle", price: "19.99", currency: "$" },
       { size: "Glass", price: "8.99", currency: "$" },
     ],
+    favourite: false,
+    ratingCount: 792,
   },
   {
     name: "Umeshu",
@@ -43,6 +47,8 @@ export const JapaneseDrinks: JapaneseDrink[] = [
       { size: "Bottle", price: "14.99", currency: "$" },
       { size: "Glass", price: "6.99", currency: "$" },
     ],
+    favourite: false,
+    ratingCount: 512,
   },
   {
     name: "Bubble Tea",
@@ -57,5 +63,7 @@ export const JapaneseDrinks: JapaneseDrink[] = [
       { size: "Medium", price: "6.99", currency: "$" },
       { size: "Large", price: "8.99", currency: "$" },
     ],
+    favourite: false,
+    ratingCount: 662,
   },
 ];
