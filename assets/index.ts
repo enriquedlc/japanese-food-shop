@@ -1,7 +1,8 @@
+import CLOSE from "./close/close.png";
+import GO_BACK from "./go-back/go-back.png";
 import PLUS from "./plus/plus.png";
 import SEARCH_ICON from "./search/search.png";
 import STAR_FILLED from "./star/star-filled.png";
-import CLOSE from "./close/close.png";
 
 // food
 
@@ -21,6 +22,7 @@ export const ICONS = {
   STAR_FILLED,
   PLUS,
   CLOSE,
+  GO_BACK,
 };
 
 export const FOOD = {

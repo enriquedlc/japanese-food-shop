@@ -1,5 +1,17 @@
 import { ReactNode } from "react";
-import { ImageBackground, ImageProps, StyleSheet, View } from "react-native";
+import {
+  ImageBackground,
+  ImageProps,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
+import { GradientBgIcon } from "./gradient-bg-icon";
+
+import { ICONS } from "../../assets";
+import { TAB_BAR_ICONS } from "../../assets/tab-bar";
+import { COLORS } from "../theme/theme";
 
 interface ImageBackgroundInfoProps {
   backButtonEnabled: boolean;
@@ -36,10 +48,30 @@ export const ImageBackgroundInfo = (props: ImageBackgroundInfoProps) => {
 
   return (
     <View>
-      <ImageBackground
-        source={image.source}
-        style={styles.backgroundImageItem}
-      ></ImageBackground>
+      <ImageBackground source={image.source} style={styles.backgroundImageItem}>
+        {backButtonEnabled && (
+          <View>
+            <TouchableOpacity>
+              <GradientBgIcon
+                options={{
+                  source: ICONS.GO_BACK,
+                  tintColor: COLORS.primaryLightGreyHex,
+                }}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <GradientBgIcon
+                options={{
+                  source: TAB_BAR_ICONS.HEART_FILLED,
+                  tintColor: favourite
+                    ? COLORS.primaryRedHex
+                    : COLORS.primaryGreyHex,
+                }}
+              />
+            </TouchableOpacity>
+          </View>
+        )}
+      </ImageBackground>
     </View>
   );
 };
