@@ -1,11 +1,5 @@
 import { ReactNode } from "react";
-import {
-  ImageBackground,
-  ImageProps,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { ImageBackground, ImageProps, StyleSheet, View } from "react-native";
 
 interface ImageBackgroundInfoProps {
   backButtonEnabled: boolean;
@@ -42,11 +36,18 @@ export const ImageBackgroundInfo = (props: ImageBackgroundInfoProps) => {
 
   return (
     <View>
-      <ImageBackground source={image.source}>
-        ImageBackgroundInfo
-      </ImageBackground>
+      <ImageBackground
+        source={image.source}
+        style={styles.backgroundImageItem}
+      ></ImageBackground>
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  backgroundImageItem: {
+    width: "100%",
+    aspectRatio: 20 / 25,
+    justifyContent: "space-between",
+  },
+});
