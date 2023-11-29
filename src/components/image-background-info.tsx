@@ -11,6 +11,7 @@ import { GradientBgIcon } from "./gradient-bg-icon";
 
 import { ICONS } from "../../assets";
 import { TAB_BAR_ICONS } from "../../assets/tab-bar";
+import { useJapaneseFoodStore } from "../store/store";
 import { COLORS } from "../theme/theme";
 
 interface ImageBackgroundInfoProps {
@@ -25,8 +26,8 @@ interface ImageBackgroundInfoProps {
   averageRating: number;
   ratingCount: number;
   toImplement?: string;
-  toggleFavourite: () => void;
   backButtonComponent: ReactNode;
+  goBack: () => void;
 }
 
 export const ImageBackgroundInfo = (props: ImageBackgroundInfoProps) => {
@@ -42,9 +43,17 @@ export const ImageBackgroundInfo = (props: ImageBackgroundInfoProps) => {
     averageRating,
     ratingCount,
     toImplement,
-    toggleFavourite,
     backButtonComponent,
+    goBack,
   } = props;
+
+  const { addFavourite, removeFromFavourite } = useJapaneseFoodStore(
+    (state) => state,
+  );
+
+  const toggleFavourite = (favourite: boolean, type: string, id: string) => {
+    favourite ? removeFromFavourite(type, id) : addFavourite(type, id);
+  };
 
   return (
     <View>
@@ -57,7 +66,7 @@ export const ImageBackgroundInfo = (props: ImageBackgroundInfoProps) => {
           }
         >
           {backButtonEnabled && (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={goBack}>
               <GradientBgIcon
                 options={{
                   source: ICONS.GO_BACK,
@@ -66,7 +75,9 @@ export const ImageBackgroundInfo = (props: ImageBackgroundInfoProps) => {
               />
             </TouchableOpacity>
           )}
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => toggleFavourite(favourite, type, id)}
+          >
             <GradientBgIcon
               options={{
                 source: TAB_BAR_ICONS.HEART_FILLED,

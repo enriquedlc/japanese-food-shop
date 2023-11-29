@@ -1,4 +1,4 @@
-import { RouteProp, useRoute } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 import { useJapaneseFoodStore } from "../store/store";
@@ -10,13 +10,17 @@ import { RootStackParamList } from "../types/general";
 
 export function DetailsScreen() {
   const route = useRoute<RouteProp<RootStackParamList, "detailsScreen">>();
+  const navigation = useNavigation();
+
   const item = useJapaneseFoodStore((state) =>
     route.params.type === "food"
       ? state.japaneseFoodList
       : state.japaneseDrinkList,
   )[route.params.index];
 
-  console.log(route.params);
+  const goBack = () => {
+    navigation.goBack();
+  };
 
   return (
     <View style={styles.container}>
@@ -37,7 +41,7 @@ export function DetailsScreen() {
           averageRating={item.averageRating}
           ratingCount={item.ratingCount}
           toImplement="toImplement"
-          toggleFavourite={() => {}}
+          goBack={goBack}
           backButtonComponent={<></>}
         />
       </ScrollView>
