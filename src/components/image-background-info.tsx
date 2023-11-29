@@ -13,6 +13,7 @@ import { ICONS } from "../../assets";
 import { TAB_BAR_ICONS } from "../../assets/tab-bar";
 import { useJapaneseFoodStore } from "../store/store";
 import { COLORS } from "../theme/theme";
+import { Icon } from "./icon";
 
 interface ImageBackgroundInfoProps {
   backButtonEnabled: boolean;
@@ -87,6 +88,21 @@ export const ImageBackgroundInfo = (props: ImageBackgroundInfoProps) => {
               }}
             />
           </TouchableOpacity>
+        </View>
+        <View style={styles.imageInfoOuterContainer}>
+          <View style={styles.imageInfoOuterContainer}>
+            <View style={styles.infoContainer}>
+              <View>
+                <Text style={styles.itemTitleText}>{name}</Text>
+                <Text style={styles.itemSubtitleText}>{specialIngredient}</Text>
+              </View>
+              <View style={styles.itemPropertiesContainer}>
+                <View style={styles.propertiesFirst}>
+                  <Icon />
+                </View>
+              </View>
+            </View>
+          </View>
         </View>
       </ImageBackground>
     </View>
