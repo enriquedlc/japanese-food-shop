@@ -43,6 +43,7 @@ export function DetailsScreen() {
           toImplement="toImplement"
           goBack={goBack}
           backButtonComponent={<></>}
+          category={item.category}
         />
       </ScrollView>
     </View>

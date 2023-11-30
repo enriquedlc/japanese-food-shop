@@ -28,6 +28,7 @@ interface ImageBackgroundInfoProps {
   ratingCount: number;
   toImplement?: string;
   backButtonComponent: ReactNode;
+  category: string;
   goBack: () => void;
 }
 
@@ -45,6 +46,7 @@ export const ImageBackgroundInfo = (props: ImageBackgroundInfoProps) => {
     ratingCount,
     toImplement,
     backButtonComponent,
+    category,
     goBack,
   } = props;
 
@@ -89,15 +91,14 @@ export const ImageBackgroundInfo = (props: ImageBackgroundInfoProps) => {
             />
           </TouchableOpacity>
         </View>
-        {/*  */}
         <ItemCharacteristics
           name={name}
           specialIngredient={specialIngredient}
           type={type}
           averageRating={averageRating}
           ratingCount={ratingCount}
+          category={category}
         />
-        {/*  */}
       </ImageBackground>
     </View>
   );

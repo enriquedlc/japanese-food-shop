@@ -34,6 +34,7 @@ interface JapaneseDrink {
   image: ImageProps["source"];
   favourite: boolean;
   ratingCount: number;
+  category: string;
 }
 
 type JapaneseMenu = JapaneseFood | JapaneseDrink;

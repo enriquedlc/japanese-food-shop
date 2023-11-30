@@ -26,7 +26,7 @@ export const JapaneseFoodData: JapaneseFood[] = [
   },
   {
     id: "J2",
-    name: "Teriyaki Chicken Bowl",
+    name: "Teriyaki Bowl",
     category: "Rice Bowl",
     image: TERIYAKI_CHICKEN_BOWL,
     description:

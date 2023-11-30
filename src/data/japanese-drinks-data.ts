@@ -19,6 +19,7 @@ export const JapaneseDrinks: JapaneseDrink[] = [
     ],
     favourite: false,
     ratingCount: 235,
+    category: "Tea",
   },
   {
     name: "Sake",
@@ -34,6 +35,7 @@ export const JapaneseDrinks: JapaneseDrink[] = [
     ],
     favourite: false,
     ratingCount: 792,
+    category: "Alcohol",
   },
   {
     name: "Umeshu",
@@ -49,6 +51,7 @@ export const JapaneseDrinks: JapaneseDrink[] = [
     ],
     favourite: false,
     ratingCount: 512,
+    category: "Alcohol",
   },
   {
     name: "Bubble Tea",
@@ -65,5 +68,6 @@ export const JapaneseDrinks: JapaneseDrink[] = [
     ],
     favourite: false,
     ratingCount: 662,
+    category: "Tea",
   },
 ];
