@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ImageSourcePropType, StyleSheet, Text, View } from "react-native";
 
 import { Icon } from "./icon";
 
@@ -12,6 +12,8 @@ interface ItemCharacteristicsProps {
   averageRating: number;
   ratingCount: number;
   category: string;
+  servingTemperature: string;
+  servingTemperatureIcon: ImageSourcePropType;
 }
 
 export function ItemCharacteristics(props: ItemCharacteristicsProps) {
@@ -22,6 +24,8 @@ export function ItemCharacteristics(props: ItemCharacteristicsProps) {
     averageRating,
     ratingCount,
     category,
+    servingTemperature,
+    servingTemperatureIcon,
   } = props;
 
   return (
@@ -45,13 +49,12 @@ export function ItemCharacteristics(props: ItemCharacteristicsProps) {
             <View style={styles.propertiesFirst}>
               <Icon
                 options={{
-                  source: ICONS.STARS_RATE,
+                  source: servingTemperatureIcon,
                   tintColor: COLORS.primaryOrangeHex,
+                  style: { width: 20, height: 20, marginBottom: 4 },
                 }}
               />
-              <Text style={styles.firstTextProperty}>
-                {averageRating} ({ratingCount})
-              </Text>
+              <Text style={styles.firstTextProperty}>{servingTemperature}</Text>
             </View>
           </View>
         </View>

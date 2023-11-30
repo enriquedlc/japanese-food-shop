@@ -6,6 +6,8 @@ export interface Price {
   currency: string;
 }
 
+type JapaneseServingTemperature = "Hot" | "Cold" | "Chilled";
+
 export interface JapaneseFood {
   id: string;
   name: string;
@@ -21,6 +23,8 @@ export interface JapaneseFood {
   specialIngredient: string;
   favourite: boolean;
   ratingCount: number;
+  servingTemperature: JapaneseServingTemperature;
+  servingTemperatureIcon: ImageProps["source"];
 }
 
 interface JapaneseDrink {
@@ -35,6 +39,8 @@ interface JapaneseDrink {
   favourite: boolean;
   ratingCount: number;
   category: string;
+  servingTemperature: JapaneseServingTemperature;
+  servingTemperatureIcon: ImageProps["source"];
 }
 
 type JapaneseMenu = JapaneseFood | JapaneseDrink;

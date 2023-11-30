@@ -1,4 +1,5 @@
 import { FOOD } from "../../assets";
+import { SERVING_TEMPERATURE } from "../../assets";
 import { JapaneseFood } from "../types/general";
 
 const { SUSHI_ROLL_COMBO, TERIYAKI_CHICKEN_BOWL, VEGETARIAN_RAMEN } = FOOD;
@@ -23,6 +24,8 @@ export const JapaneseFoodData: JapaneseFood[] = [
     index: 0,
     favourite: false,
     ratingCount: 937,
+    servingTemperature: "Cold",
+    servingTemperatureIcon: SERVING_TEMPERATURE.COLD,
   },
   {
     id: "J2",
@@ -43,6 +46,8 @@ export const JapaneseFoodData: JapaneseFood[] = [
     index: 1,
     favourite: false,
     ratingCount: 792,
+    servingTemperature: "Hot",
+    servingTemperatureIcon: SERVING_TEMPERATURE.HOT,
   },
   {
     id: "J3",
@@ -63,5 +68,7 @@ export const JapaneseFoodData: JapaneseFood[] = [
     index: 2,
     favourite: false,
     ratingCount: 512,
+    servingTemperature: "Hot",
+    servingTemperatureIcon: SERVING_TEMPERATURE.HOT,
   },
 ];
