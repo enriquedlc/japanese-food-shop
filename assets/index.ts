@@ -1,6 +1,7 @@
 import CLOSE from "./close/close.png";
 import GO_BACK from "./go-back/go-back.png";
 import PLUS from "./plus/plus.png";
+import STARS_RATE from "./rate/stars-rate.png";
 import SEARCH_ICON from "./search/search.png";
 import STAR_FILLED from "./star/star-filled.png";
 
@@ -25,6 +26,7 @@ export const ICONS = {
   PLUS,
   CLOSE,
   GO_BACK,
+  STARS_RATE,
 };
 
 export const FOOD = {

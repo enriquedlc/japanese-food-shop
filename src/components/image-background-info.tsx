@@ -3,13 +3,14 @@ import {
   ImageBackground,
   ImageProps,
   StyleSheet,
+  Text,
   TouchableOpacity,
   View,
 } from "react-native";
 
 import { GradientBgIcon } from "./gradient-bg-icon";
 
-import { ICONS } from "../../assets";
+import { DRINKS, FOOD, ICONS } from "../../assets";
 import { TAB_BAR_ICONS } from "../../assets/tab-bar";
 import { useJapaneseFoodStore } from "../store/store";
 import { COLORS } from "../theme/theme";
@@ -89,8 +90,9 @@ export const ImageBackgroundInfo = (props: ImageBackgroundInfoProps) => {
             />
           </TouchableOpacity>
         </View>
+        {/*  */}
         <View style={styles.imageInfoOuterContainer}>
-          <View style={styles.imageInfoOuterContainer}>
+          <View style={styles.imageInfoInnerContainer}>
             <View style={styles.infoContainer}>
               <View>
                 <Text style={styles.itemTitleText}>{name}</Text>
@@ -98,12 +100,30 @@ export const ImageBackgroundInfo = (props: ImageBackgroundInfoProps) => {
               </View>
               <View style={styles.itemPropertiesContainer}>
                 <View style={styles.propertiesFirst}>
-                  <Icon />
+                  <Icon
+                    options={{
+                      source: type === "food" ? FOOD.FOOD_TOOLS : DRINKS.DRINK,
+                      tintColor: COLORS.primaryOrangeHex,
+                    }}
+                  />
+                  <Text style={styles.firstTextProperty}>{type}</Text>
+                </View>
+                <View style={styles.propertiesFirst}>
+                  <Icon
+                    options={{
+                      source: ICONS.STARS_RATE,
+                      tintColor: COLORS.primaryOrangeHex,
+                    }}
+                  />
+                  <Text style={styles.firstTextProperty}>
+                    {averageRating} ({ratingCount})
+                  </Text>
                 </View>
               </View>
             </View>
           </View>
         </View>
+        {/*  */}
       </ImageBackground>
     </View>
   );
@@ -128,5 +148,50 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
     paddingTop: 20,
+  },
+  imageInfoOuterContainer: {
+    paddingVertical: 24,
+    paddingHorizontal: 30,
+    backgroundColor: COLORS.primaryBlackRGBA,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    fontFamily: "poppins",
+  },
+  imageInfoInnerContainer: {
+    justifyContent: "space-between",
+    gap: 15,
+  },
+  infoContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  itemPropertiesContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 15,
+  },
+  itemTitleText: {
+    fontFamily: "poppins-semibold",
+    fontSize: 24,
+    color: COLORS.primaryWhiteHex,
+  },
+  itemSubtitleText: {
+    fontFamily: "poppins-medium",
+    fontSize: 12,
+    color: COLORS.primaryWhiteHex,
+  },
+  propertiesFirst: {
+    height: 55,
+    width: 55,
+    borderRadius: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: COLORS.primaryBlackHex,
+  },
+  firstTextProperty: {
+    fontFamily: "poppins-medium",
+    fontSize: 10,
+    color: COLORS.primaryWhiteHex,
   },
 });
