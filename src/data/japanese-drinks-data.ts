@@ -1,4 +1,5 @@
 import { DRINKS } from "../../assets";
+import { SERVING_TEMPERATURE } from "../../assets";
 import { JapaneseDrink } from "../types/general";
 
 const { BUBBLE_TEA, MATCHA, SAKE, UMESHU } = DRINKS;
@@ -19,6 +20,9 @@ export const JapaneseDrinks: JapaneseDrink[] = [
     ],
     favourite: false,
     ratingCount: 235,
+    category: "Tea",
+    servingTemperature: "Chilled",
+    servingTemperatureIcon: SERVING_TEMPERATURE.CHILLED,
   },
   {
     name: "Sake",
@@ -34,6 +38,9 @@ export const JapaneseDrinks: JapaneseDrink[] = [
     ],
     favourite: false,
     ratingCount: 792,
+    category: "Alcohol",
+    servingTemperature: "Chilled",
+    servingTemperatureIcon: SERVING_TEMPERATURE.CHILLED,
   },
   {
     name: "Umeshu",
@@ -49,6 +56,9 @@ export const JapaneseDrinks: JapaneseDrink[] = [
     ],
     favourite: false,
     ratingCount: 512,
+    category: "Alcohol",
+    servingTemperature: "Cold",
+    servingTemperatureIcon: SERVING_TEMPERATURE.COLD,
   },
   {
     name: "Bubble Tea",
@@ -65,5 +75,8 @@ export const JapaneseDrinks: JapaneseDrink[] = [
     ],
     favourite: false,
     ratingCount: 662,
+    category: "Tea",
+    servingTemperature: "Cold",
+    servingTemperatureIcon: SERVING_TEMPERATURE.COLD,
   },
 ];

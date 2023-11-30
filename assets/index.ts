@@ -20,6 +20,11 @@ import MATCHA from "./drinks/matcha-tea.jpeg";
 import SAKE from "./drinks/sake.jpeg";
 import UMESHU from "./drinks/umeshu.jpeg";
 
+// serving temperature
+import COLD from "./serving-temperature/cold.png";
+import HOT from "./serving-temperature/hot.png";
+import CHILLED from "./serving-temperature/chilled.png";
+
 export const ICONS = {
   SEARCH_ICON,
   STAR_FILLED,
@@ -42,4 +47,10 @@ export const DRINKS = {
   SAKE,
   UMESHU,
   DRINK,
+};
+
+export const SERVING_TEMPERATURE = {
+  COLD,
+  HOT,
+  CHILLED,
 };

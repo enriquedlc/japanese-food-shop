@@ -1,10 +1,9 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StatusBar, StyleSheet, View } from "react-native";
 
+import { ImageBackgroundInfo } from "../components/image-background-info";
 import { useJapaneseFoodStore } from "../store/store";
 
-import { StatusBar } from "react-native";
-import { ImageBackgroundInfo } from "../components/image-background-info";
 import { COLORS } from "../theme/theme";
 import { RootStackParamList } from "../types/general";
 
@@ -43,6 +42,9 @@ export function DetailsScreen() {
           toImplement="toImplement"
           goBack={goBack}
           backButtonComponent={<></>}
+          category={item.category}
+          servingTemperature={item.servingTemperature}
+          servingTemperatureIcon={item.servingTemperatureIcon}
         />
       </ScrollView>
     </View>

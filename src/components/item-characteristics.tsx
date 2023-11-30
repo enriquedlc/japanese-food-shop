@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ImageSourcePropType, StyleSheet, Text, View } from "react-native";
 
 import { Icon } from "./icon";
 
@@ -11,10 +11,22 @@ interface ItemCharacteristicsProps {
   type: string;
   averageRating: number;
   ratingCount: number;
+  category: string;
+  servingTemperature: string;
+  servingTemperatureIcon: ImageSourcePropType;
 }
 
 export function ItemCharacteristics(props: ItemCharacteristicsProps) {
-  const { name, specialIngredient, type, averageRating, ratingCount } = props;
+  const {
+    name,
+    specialIngredient,
+    type,
+    averageRating,
+    ratingCount,
+    category,
+    servingTemperature,
+    servingTemperatureIcon,
+  } = props;
 
   return (
     <View style={styles.imageInfoOuterContainer}>
@@ -37,14 +49,28 @@ export function ItemCharacteristics(props: ItemCharacteristicsProps) {
             <View style={styles.propertiesFirst}>
               <Icon
                 options={{
-                  source: ICONS.STARS_RATE,
+                  source: servingTemperatureIcon,
                   tintColor: COLORS.primaryOrangeHex,
+                  style: { width: 20, height: 20, marginBottom: 4 },
                 }}
               />
-              <Text style={styles.firstTextProperty}>
-                {averageRating} ({ratingCount})
-              </Text>
+              <Text style={styles.firstTextProperty}>{servingTemperature}</Text>
             </View>
+          </View>
+        </View>
+        <View style={styles.infoContainer}>
+          <View style={styles.ratingContainer}>
+            <Icon
+              options={{
+                source: ICONS.STARS_RATE,
+                tintColor: COLORS.primaryOrangeHex,
+              }}
+            />
+            <Text style={styles.ratingText}>{averageRating}</Text>
+            <Text style={styles.ratingCountText}>({ratingCount})</Text>
+          </View>
+          <View style={styles.categoryContainer}>
+            <Text style={styles.categoryText}>{category}</Text>
           </View>
         </View>
       </View>
@@ -77,7 +103,7 @@ const styles = StyleSheet.create({
   },
   itemTitleText: {
     fontFamily: "poppins-semibold",
-    fontSize: 24,
+    fontSize: 22,
     color: COLORS.primaryWhiteHex,
   },
   itemSubtitleText: {
@@ -96,6 +122,34 @@ const styles = StyleSheet.create({
   firstTextProperty: {
     fontFamily: "poppins-medium",
     fontSize: 10,
+    color: COLORS.primaryWhiteHex,
+  },
+  ratingContainer: {
+    flexDirection: "row",
+    gap: 10,
+    alignItems: "center",
+  },
+  ratingText: {
+    fontFamily: "poppins-semibold",
+    fontSize: 17,
+    color: COLORS.primaryWhiteHex,
+  },
+  ratingCountText: {
+    fontFamily: "poppins",
+    fontSize: 12,
+    color: COLORS.primaryWhiteHex,
+  },
+  categoryContainer: {
+    height: 55,
+    width: 55 * 2 + 20,
+    borderRadius: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: COLORS.primaryBlackHex,
+  },
+  categoryText: {
+    fontFamily: "poppins",
+    fontSize: 12,
     color: COLORS.primaryWhiteHex,
   },
 });

@@ -145,7 +145,7 @@ export const useJapaneseFoodStore = create<State & Actions>()(
       },
     }),
     {
-      name: "z",
+      name: "v",
       storage: createJSONStorage(() => AsyncStorage),
     },
   ),

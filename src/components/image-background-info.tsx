@@ -2,18 +2,19 @@ import { ReactNode } from "react";
 import {
   ImageBackground,
   ImageProps,
+  ImageSourcePropType,
   StyleSheet,
   TouchableOpacity,
   View,
 } from "react-native";
 
+import { useJapaneseFoodStore } from "../store/store";
 import { GradientBgIcon } from "./gradient-bg-icon";
+import { ItemCharacteristics } from "./item-characteristics";
 
 import { ICONS } from "../../assets";
 import { TAB_BAR_ICONS } from "../../assets/tab-bar";
-import { useJapaneseFoodStore } from "../store/store";
 import { COLORS } from "../theme/theme";
-import { ItemCharacteristics } from "./item-characteristics";
 
 interface ImageBackgroundInfoProps {
   backButtonEnabled: boolean;
@@ -28,6 +29,9 @@ interface ImageBackgroundInfoProps {
   ratingCount: number;
   toImplement?: string;
   backButtonComponent: ReactNode;
+  category: string;
+  servingTemperature: string;
+  servingTemperatureIcon: ImageSourcePropType;
   goBack: () => void;
 }
 
@@ -45,7 +49,10 @@ export const ImageBackgroundInfo = (props: ImageBackgroundInfoProps) => {
     ratingCount,
     toImplement,
     backButtonComponent,
+    category,
     goBack,
+    servingTemperature,
+    servingTemperatureIcon,
   } = props;
 
   const { addFavourite, removeFromFavourite } = useJapaneseFoodStore(
@@ -89,15 +96,16 @@ export const ImageBackgroundInfo = (props: ImageBackgroundInfoProps) => {
             />
           </TouchableOpacity>
         </View>
-        {/*  */}
         <ItemCharacteristics
           name={name}
           specialIngredient={specialIngredient}
           type={type}
           averageRating={averageRating}
           ratingCount={ratingCount}
+          category={category}
+          servingTemperature={servingTemperature}
+          servingTemperatureIcon={servingTemperatureIcon}
         />
-        {/*  */}
       </ImageBackground>
     </View>
   );
